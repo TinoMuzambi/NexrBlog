@@ -1,6 +1,8 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { server } from "../config";
 import Blogs from "./blogs";
+import AOS from "aos";
+import { useRouter } from "next/router";
 
 export default function Home({ blogs }) {
 	const [queryText, setQueryText] = useState("");
@@ -10,6 +12,66 @@ export default function Home({ blogs }) {
 	const featured = useRef(null);
 	const blogsRef = useRef(null);
 	const footer = useRef(null);
+	const router = useRouter();
+
+	const searchBlogs = (query) => {
+		// Search by updating queryText state.
+		setQueryText(query);
+		query ? setSearching(true) : setSearching(false);
+	};
+
+	useEffect(() => {
+		AOS.init(); // Initialise animate on scroll library.
+
+		const preload = document.querySelector(".preload"); // Set timeout for showing preloader.
+		const timeoutID = setTimeout(function () {
+			preload.classList.add("finish");
+			clearTimeout(timeoutID);
+		}, 7000);
+
+		window.addEventListener("load", () => {
+			// Get rid of preloader once everything's loaded
+			preload.classList.add("finish");
+		});
+
+		return () => {
+			window.removeEventListener("load", () => {
+				// Get rid of preloader once everything's loaded
+				preload.classList.add("finish");
+			});
+		};
+	}, []);
+
+	useEffect(() => {
+		const nav = document.querySelector(".nav"); // Remove collapse from nav to hide it.
+		nav.classList.remove("collapse");
+		nav.classList.remove("collapse-sm");
+	}, [router.pathname]);
+
+	const filteredBlogs = blogs.filter((eachItem) => {
+		// Only get future blogs for sidebar.
+		return eachItem["future"] === true;
+	});
+
+	let homeBlogs = blogs.filter((eachItem) => {
+		// Only get published blogs for main content.
+		return eachItem["future"] === false;
+	});
+
+	homeBlogs = homeBlogs.filter((eachItem) => {
+		// Only display blogs matching search.
+		return (
+			eachItem["title"] // Search in title.
+				.toLowerCase()
+				.includes(queryText.toLowerCase()) ||
+			eachItem["category"] // Search in category.
+				.toLowerCase()
+				.includes(queryText.toLowerCase()) ||
+			eachItem["content"] // Search in content.
+				.toLowerCase()
+				.includes(queryText.toLowerCase())
+		);
+	});
 
 	return (
 		<>
@@ -17,7 +79,7 @@ export default function Home({ blogs }) {
 				<div className="site-content">
 					<section className="blogs" ref={blogsRef}>
 						<Blogs
-							blogs={blogs}
+							blogs={homeBlogs}
 							category={false}
 							blogsRef={blogsRef}
 							search={searching}
