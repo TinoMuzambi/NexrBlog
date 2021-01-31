@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { server } from "../config";
-import Blogs from "./blogs";
+import Blogs from "../components/Blogs";
 import Sidebar from "../components/Sidebar";
 import About from "../components/About";
 import Featured from "../components/Featured";

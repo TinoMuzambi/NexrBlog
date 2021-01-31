@@ -1,4 +1,4 @@
-import Blogs from "../../../pages/blogs";
+import Blogs from "../../../components/Blogs";
 import { server } from "../../../config";
 import Meta from "../../../components/Meta";
 import Sidebar from "../../../components/Sidebar";
