@@ -5,7 +5,7 @@ import Footer from "./Footer";
 const Wrapper = ({ children }) => {
 	return (
 		<>
-			<Preload />
+			{/* <Preload /> */}
 			<Navbar />
 			{children}
 			<Footer />

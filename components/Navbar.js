@@ -5,7 +5,7 @@ import { FaBars } from "react-icons/fa";
 import SocialIcons from "./SocialIcons";
 
 const Navbar = ({ about, featured, blogsRef, footer }) => {
-	const location = useLocation();
+	// const location = useLocation();
 
 	const toggleCollapse = () => {
 		// Toggle collapse class on navbar.
@@ -21,7 +21,7 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 			<nav className="nav" id="nav">
 				<div className="nav-menu">
 					<div className="nav-brand">
-						<Link to="/" className="text-gray">
+						<Link href="/" className="text-gray">
 							Blog.TinoMuzambi
 						</Link>
 					</div>
@@ -48,7 +48,7 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 								Home
 							</li>
 						) : (
-							<Link to="/">
+							<Link href="/">
 								<li className="nav-link">Home</li>
 							</Link>
 						)}
