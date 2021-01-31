@@ -5,12 +5,7 @@ import ReactHtmlParser from "react-html-parser";
 
 const Blog = ({ blog }) => {
 	return (
-		<div
-			className="post-content"
-			data-aos="zoom-in"
-			data-aos-delay="200"
-			key={key}
-		>
+		<div className="post-content" data-aos="zoom-in" data-aos-delay="200">
 			<div className="post-image">
 				<div>
 					<Link href={`/blogs/${blog.url}`}>
