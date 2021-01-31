@@ -79,7 +79,7 @@ const Blogs = ({ blogs, category, search, blogsRef }) => {
 					<div className="post-title">
 						<Link href="blogs/[url]" as={`/blogs/${blog.url}`}>
 							<>
-								{blog.title}
+								<a>{blog.title}</a>
 								{ReactHtmlParser(
 									blog.content.slice(0, blog.content.indexOf("<br>")) + "</p>"
 								)}

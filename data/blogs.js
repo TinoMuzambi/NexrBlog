@@ -33,7 +33,7 @@ export const blogs = [
 		readTime: "5 minutes",
 		image: "/assets/blog-images/phone_or_laptop.jpg",
 		alt: "phone or laptop",
-		content: `<><p style="font-size: 1rem;">
+		content: `<p style="font-size: 1rem;">
 		Here’s a thought experiment. If you were to choose between two futures, one where
 		laptops/computers become obsolete and only smartphones exist or the opposite, one where
 		smartphones become obsolete and laptops/computers become obsolete,
@@ -91,7 +91,7 @@ export const blogs = [
 		Which future would you prefer? Don’t be swayed by my bulletproof water tight argument, I wanna
 		hear your thoughts. Do you agree with my bold statement? If you were wondering about tablets,
 		they’re obsolete too. Same goes for foldables. I’ll see you in the comments.<br><br>
-	</p></>`,
+	</p>`,
 		disqusURL: "https://blog.tinomuzambi.com/blogs/phone_or_laptop",
 		disqusIdentifier: "tino_phone_laptop",
 		disqusSrc: "https://blogtinomuzambi.disqus.com/embed.js",
@@ -107,7 +107,7 @@ export const blogs = [
 		readTime: "4 minutes",
 		image: `/assets/blog-images/shower_thoughts.jpg`,
 		alt: "shower",
-		content: `<><p style="font-size: 1rem;">
+		content: `<p style="font-size: 1rem;">
 		I had a shower thought, about taking a shower. The thought intrigued me and I haven't stopped
 		thinking about it. It intrigued me so much that I couldn’t keep it to myself any longer, so I’ve
 		come to share it with you. I think I’ll make this a series, so with that said, welcome to the
@@ -150,7 +150,7 @@ export const blogs = [
 		I’d love to hear your thoughts on this, especially if you know some stuff about how the body
 		reacts to changes in temperature. Would you be willing to stand in a shower to find out the
 		answer? Do you think this whole idea is just ridiculous? Let’s hear it.<br><br>
-	</p></>`,
+	</p>`,
 		disqusURL: "https://blog.tinomuzambi.com/blogs/shower_thoughts",
 		disqusIdentifier: "tino_shower_thoughts0",
 		disqusSrc: "https://blogtinomuzambi.disqus.com/embed.js",
@@ -166,7 +166,7 @@ export const blogs = [
 		readTime: "5 minutes",
 		image: "/assets/blog-images/walls.jpg",
 		alt: "walls",
-		content: `<><p style="font-size: 1rem;">
+		content: `<p style="font-size: 1rem;">
 		The year is 2014. I had just transitioned into high school and giant game company, Supercell’s
 		<i><i>Clash of Clans</i></i> is gaining traction. Everyone is playing the game before school,
 		after school and
@@ -232,7 +232,7 @@ export const blogs = [
 		upgrading those walls. Oh and if you play <i>Clash of Clans</i>, I don’t wanna hear anything
 		about air
 		troops.<br><br>
-	</p></>`,
+	</p>`,
 		disqusURL: "https://blog.tinomuzambi.com/blogs/upgrade_your_walls",
 		disqusIdentifier: "upgrade_your_walls_tino",
 		disqusSrc: "https://blogtinomuzambi.disqus.com/embed.js",
@@ -248,7 +248,7 @@ export const blogs = [
 		readTime: "35 minutes",
 		image: "/assets/blog-images/editing.PNG",
 		alt: "editing",
-		content: `<><p style="font-size: 1rem;">
+		content: `<p style="font-size: 1rem;">
 		Before you even read this blog, you <strong>absolutely imperatively have to</strong> go watch
 		this 21-minute
 		video I made otherwise nothing will make sense. No jokes, dead serious... Okay you don’t have
@@ -399,7 +399,7 @@ export const blogs = [
 		There’s a lot of great stuff out there that you can use to make beautiful things. Post your
 		favourite tools in the comments and let’s share and discover new things. Catch you in the next
 		blog.<br><br>
-	</p></>`,
+	</p>`,
 		disqusURL: "https://blog.tinomuzambi.com/blogs/photo_and_video_editing",
 		disqusIdentifier: "tino_photo_video_edits",
 		disqusSrc: "https://blogtinomuzambi.disqus.com/embed.js",
@@ -415,7 +415,7 @@ export const blogs = [
 		readTime: "5 minutes",
 		image: "/assets/blog-images/my_iceberg.jpg",
 		alt: "me",
-		content: `<><p style="font-size: 1rem;">
+		content: `<p style="font-size: 1rem;">
 		I was thinking about how much to divulge in this blog to let you sufficiently in on my life, but
 		also keep myself employable and then I remembered the <i>Iceberg Theory</i>. This theory alludes
 		to how only a small part (about ten percent) of an iceberg is visible above water, with the rest
@@ -503,7 +503,7 @@ export const blogs = [
 																  style="color: skyblue">website</a> to
 		get in
 		contact. Stay tuned to blog.tinomuzambi.com for more blogs coming soon.<br><br>
-	</p></>`,
+	</p>`,
 		disqusURL: "https://blog.tinomuzambi.com/blogs/a_little_about_me",
 		disqusIdentifier: "tino_about_me",
 		disqusSrc: "https://tinomuzambi.disqus.com/embed.js",
@@ -519,7 +519,7 @@ export const blogs = [
 		readTime: "7 minutes",
 		image: "/assets/blog-images/voicenotes.png",
 		alt: "voicenotes",
-		content: `<><p style="font-size: 1rem;">
+		content: `<p style="font-size: 1rem;">
 		You probably think the image above is fake and I generated it with Photoshop or some app and
 		you’d be right.
 		(Shoutout FakeChatForWhatsApp) But it’s actually based on a true story no cap. Yeah, I got a
@@ -589,7 +589,7 @@ export const blogs = [
 		thoughts. How do you feel about voicenotes? Am I being dramatic? Do you relate to people who
 		don’t have voicenote etiquette? Are you the one who doesn’t have voicenote etiquette? I’d love
 		to engage and stay tuned to blog.tinomuzambi.com for more blogs coming soon.<br><br>
-	</p></>`,
+	</p>`,
 		disqusURL: "https://blog.tinomuzambi.com/blogs/why_i_hate_voicenotes",
 		disqusIdentifier: "tinomuzambi",
 		disqusSrc: "https://tinomuzambi.disqus.com/embed.js",
