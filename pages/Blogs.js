@@ -103,7 +103,6 @@ const Blogs = ({ blogs, category, search, blogsRef }) => {
 					items={blogItems}
 					onChangePage={handlePageChange}
 					pageSize={4}
-					// styles={customStyles}
 					labels={customLabels}
 				/>
 			</div>

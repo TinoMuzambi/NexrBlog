@@ -3,7 +3,7 @@ import { FaBars } from "react-icons/fa";
 import SocialIcons from "./SocialIcons";
 import { useRouter } from "next/router";
 
-const Navbar = ({ about, featured, blogsRef, footer }) => {
+const Navbar = () => {
 	const router = useRouter();
 
 	const toggleCollapse = () => {
@@ -35,11 +35,6 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 						<li
 							className="nav-link"
 							onClick={() =>
-								// scrollToComponent(about.current, {
-								// 	offset: 0,
-								// 	align: "top",
-								// 	duration: 1500,
-								// })
 								document
 									.querySelector(".about")
 									.scrollIntoView({ behavior: "smooth" })
@@ -59,11 +54,6 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 						<li
 							className="nav-link"
 							onClick={() =>
-								// scrollToComponent(featured.current, {
-								// 	offset: 0,
-								// 	align: "top",
-								// 	duration: 1500,
-								// })
 								document
 									.querySelector(".featured")
 									.scrollIntoView({ behavior: "smooth" })
@@ -79,11 +69,6 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 						<li
 							className="nav-link"
 							onClick={() =>
-								// scrollToComponent(blogsRef.current, {
-								// 	offset: 0,
-								// 	align: "top",
-								// 	duration: 1500,
-								// })
 								document
 									.querySelector(".blogs")
 									.scrollIntoView({ behavior: "smooth" })
@@ -97,11 +82,6 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 					<li
 						className="nav-link"
 						onClick={() =>
-							// scrollToComponent(footer.current, {
-							// 	offset: 0,
-							// 	align: "top",
-							// 	duration: 1500,
-							// })
 							document
 								.querySelector("footer")
 								.scrollIntoView({ behavior: "smooth" })
