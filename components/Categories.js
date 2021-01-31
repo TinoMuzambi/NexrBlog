@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import categories from "../data/categories";
+// import categories from "../data/categories";
 
-const Categories = () => (
+const Categories = ({ categories }) => (
 	<>
 		<h2>Categories</h2>
 		<ul className="category-list">

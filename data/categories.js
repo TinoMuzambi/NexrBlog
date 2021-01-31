@@ -1,4 +1,4 @@
-const categories = [
+export const categories = [
 	{
 		name: "Tech",
 		count: 2,
@@ -22,5 +22,3 @@ const categories = [
 	// 	count: 0,
 	// },
 ];
-
-export default categories;
