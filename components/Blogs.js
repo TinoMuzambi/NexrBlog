@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import JwPagination from "jw-react-pagination";
 import { useRouter } from "next/router";
 import Blog from "./Blog";
+import { GlobalContext } from "../context/GlobalState";
 
-const Blogs = ({ blogs, category, search, fromCategory, searchTerm }) => {
+const Blogs = ({ category, search, fromCategory, searchTerm }) => {
+	const { blogs } = useContext(GlobalContext);
 	const [blogItems] = useState(blogs); // Set state to list of blogs.
 	let displayBlogs = []; // Blogs currently being displayed.
 	const router = useRouter();
@@ -104,16 +106,4 @@ Blogs.defaultProps = {
 	search: false,
 	fromCategory: false,
 	searchTerm: "",
-};
-
-export const getStaticProps = async () => {
-	const res = await fetch(`${server}/api/blogs`);
-	const blogs = await res.json();
-	console.log(blogs);
-
-	return {
-		props: {
-			blogs,
-		},
-	};
 };

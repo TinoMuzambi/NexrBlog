@@ -45,7 +45,7 @@ export default function Home({ item }) {
 				<About /> {/* About section */}
 			</section>
 			<section className="featured">
-				<Featured item={item} /> {/* Featured section */}
+				<Featured /> {/* Featured section */}
 			</section>
 			<div className="search-wrapper">
 				<Search searchBlogs={searchBlogs} /> {/* Search box */}

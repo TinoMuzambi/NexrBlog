@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import { FaUser, FaCalendar, FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 import Moment from "react-moment";
+import { GlobalContext } from "../context/GlobalState";
 import ReactHtmlParser from "react-html-parser";
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, key }) => {
+	const { blogs } = useContext(GlobalContext);
+
 	return (
 		<div className="post-content" data-aos="zoom-in" data-aos-delay="200">
 			<div className="post-image">

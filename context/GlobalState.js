@@ -18,12 +18,35 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(AppReducer, initialState);
 
+	// Actions
+	const updateBlogs = (blogs) => {
+		dispatch({
+			type: "UPDATE_BLOGS",
+			payload: blogs,
+		});
+	};
+	const updateCategories = (categories) => {
+		dispatch({
+			type: "UPDATE_CATEGORIES",
+			payload: categories,
+		});
+	};
+	const updateItem = (item) => {
+		dispatch({
+			type: "UPDATE_ITEM",
+			payload: item,
+		});
+	};
+
 	return (
 		<GlobalContext.Provider
 			value={{
 				blogs: state.blogs,
 				categories: state.categories,
 				item: state.item,
+				updateBlogs,
+				updateCategories,
+				updateItem,
 			}}
 		>
 			{children}

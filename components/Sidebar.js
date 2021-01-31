@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import Categories from "./Categories";
 import SideBlog from "./SideBlog";
-import { server } from "../config";
+import { GlobalContext } from "../context/GlobalState";
 
-const Sidebar = ({ blogs, future, categories, side }) => {
+const Sidebar = ({ future, side }) => {
+	const { blogs } = useContext(GlobalContext);
+	const { categories } = useContext(GlobalContext);
 	const filteredBlogs = blogs // Getting list that doesn't include current blog nor future blogs for other blogs section.
 		.filter((eachItem) => {
 			return (
@@ -42,19 +45,4 @@ Sidebar.defaultProps = {
 	future: false,
 	categories: [],
 	side: false,
-};
-
-export const getStaticProps = async () => {
-	const res = await fetch(`${server}/api/blogs`);
-	const blogs = await res.json();
-
-	const res2 = await fetch(`${server}/api/categories`);
-	const categories = await res2.json();
-
-	return {
-		props: {
-			blogs,
-			categories,
-		},
-	};
 };
