@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import Blogs from "../../../pages/blogs";
 import { server } from "../../../config";
+import Meta from "../../../components/Meta";
 import Sidebar from "../../../components/Sidebar";
 
 const category = ({ category, blogs, categories }) => {
@@ -24,27 +25,34 @@ const category = ({ category, blogs, categories }) => {
 		.slice(0, 3);
 
 	return (
-		<div className="container" ref={ref}>
-			<div className="site-content">
-				<div className="posts">
-					<h1>{category.name}</h1>
-					{/* Only render component if there are blogs to show for category */}
-					{filteredBlogs.length > 0 ? (
-						<Blogs
-							blogs={filteredBlogs}
-							category={true}
-							root={ref}
-							search={false}
-							blogsRef={ref}
-						/>
-					) : (
-						<h2>Nothing here yet...</h2>
-					)}
+		<>
+			<Meta
+				title={`${category.name} | Blog.TinoMuzambi`}
+				description={category.name}
+				url={`https://blog.tinomuzambi.com/${category.url}`}
+			/>
+			<div className="container" ref={ref}>
+				<div className="site-content">
+					<div className="posts">
+						<h1>{category.name}</h1>
+						{/* Only render component if there are blogs to show for category */}
+						{filteredBlogs.length > 0 ? (
+							<Blogs
+								blogs={filteredBlogs}
+								category={true}
+								root={ref}
+								search={false}
+								blogsRef={ref}
+							/>
+						) : (
+							<h2>Nothing here yet...</h2>
+						)}
+					</div>
+					<Sidebar blogs={sideBlogs} future={false} categories={categories} />
+					{/* Sidebar section populated with links to other blogs. */}
 				</div>
-				<Sidebar blogs={sideBlogs} future={false} categories={categories} />
-				{/* Sidebar section populated with links to other blogs. */}
 			</div>
-		</div>
+		</>
 	);
 };
 
