@@ -5,7 +5,7 @@ import Sidebar from "../components/Sidebar";
 import AOS from "aos";
 import { useRouter } from "next/router";
 
-export default function Home({ blogs }) {
+export default function Home({ blogs, categories }) {
 	const [queryText, setQueryText] = useState("");
 	const [searching, setSearching] = useState(false);
 
@@ -87,7 +87,11 @@ export default function Home({ blogs }) {
 						/>
 					</section>
 
-					<Sidebar blogs={filteredBlogs} future={true} />
+					<Sidebar
+						blogs={filteredBlogs}
+						future={true}
+						categories={categories}
+					/>
 					{/* Sidebar section - pass list of blogs, true for future to signal
 											showing future blogs.*/}
 				</div>
@@ -100,9 +104,13 @@ export const getStaticProps = async () => {
 	const res = await fetch(`${server}/api/blogs`);
 	const blogs = await res.json();
 
+	const res2 = await fetch(`${server}/api/categories`);
+	const categories = await res2.json();
+
 	return {
 		props: {
 			blogs,
+			categories,
 		},
 	};
 };
