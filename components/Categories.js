@@ -23,3 +23,7 @@ const Categories = ({ categories }) => (
 );
 
 export default Categories;
+
+Categories.defaultProps = {
+	categories: [],
+};

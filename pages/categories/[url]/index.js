@@ -49,6 +49,12 @@ const category = ({ category, blogs, categories }) => {
 
 export default category;
 
+blog.defaultProps = {
+	category: {},
+	blogs: [],
+	categories: [],
+};
+
 export const getStaticProps = async (context) => {
 	const res = await fetch(`${server}/api/categories/${context.params.url}/`);
 	const category = await res.json();

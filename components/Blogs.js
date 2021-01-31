@@ -12,7 +12,7 @@ import ReactHtmlParser from "react-html-parser";
 import JwPagination from "jw-react-pagination";
 import { useRouter } from "next/router";
 
-const Blogs = ({ blogs, category, search, blogsRef }) => {
+const Blogs = ({ blogs, category, search }) => {
 	const [blogItems] = useState(blogs); // Set state to list of blogs.
 	const [displayBlogs, setDisplayBlogs] = useState([]); // Blogs currently being displayed.
 	const router = useRouter();
@@ -111,3 +111,9 @@ const Blogs = ({ blogs, category, search, blogsRef }) => {
 };
 
 export default Blogs;
+
+Blogs.defaultProps = {
+	category: {},
+	blogs: [],
+	search: false,
+};

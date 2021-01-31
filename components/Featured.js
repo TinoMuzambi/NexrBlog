@@ -31,3 +31,7 @@ const Featured = ({ item }) => (
 );
 
 export default Featured;
+
+Featured.defaultProps = {
+	item: {},
+};

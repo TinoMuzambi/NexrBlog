@@ -11,3 +11,7 @@ const Search = ({ searchBlogs }) => (
 );
 
 export default Search;
+
+Search.defaultProps = {
+	searchBlogs: () => {},
+};

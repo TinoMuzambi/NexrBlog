@@ -91,6 +91,12 @@ const blog = ({ blog, blogs, categories }) => {
 
 export default blog;
 
+blog.defaultProps = {
+	blog: {},
+	blogs: [],
+	categories: [],
+};
+
 export const getStaticProps = async (context) => {
 	const res = await fetch(`${server}/api/blogs/${context.params.url}`);
 	const blog = await res.json();

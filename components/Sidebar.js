@@ -13,3 +13,9 @@ const Sidebar = ({ blogs, future, categories }) => (
 );
 
 export default Sidebar;
+
+Sidebar.defaultProps = {
+	blogs: [],
+	future: false,
+	categories: [],
+};

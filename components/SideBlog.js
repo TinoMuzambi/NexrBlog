@@ -61,3 +61,8 @@ const SideBlog = ({ blogs, future }) => (
 );
 
 export default SideBlog;
+
+SideBlog.defaultProps = {
+	blogs: [],
+	future: false,
+};

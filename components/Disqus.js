@@ -30,3 +30,9 @@ const Disqus = ({ url, id, src }) => {
 };
 
 export default Disqus;
+
+Disqus.defaultProps = {
+	url: "",
+	id: "",
+	src: "",
+};
