@@ -6,7 +6,7 @@ const Categories = ({ categories }) => (
 		<h2>Categories</h2>
 		<ul className="category-list">
 			{categories.map((category, key) => (
-				<Link href={`/categories/${category.name.toLowerCase()}`} key={key}>
+				<Link href={`/categories/${category.url}`} key={key}>
 					<li className="list-items" data-aos="fade-left" data-aos-delay="200">
 						{category.name}
 						<span>({category.count})</span>
