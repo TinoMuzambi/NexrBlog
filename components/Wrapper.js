@@ -7,7 +7,7 @@ const Wrapper = ({ children }) => {
 		<>
 			{/* <Preload /> */}
 			<Navbar />
-			{children}
+			<>{children}</>
 			<Footer />
 		</>
 	);
