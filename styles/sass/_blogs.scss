@@ -1,0 +1,181 @@
+.site-content {
+	display: grid;
+	grid-template-columns: 70% 30%;
+
+	@include mq(750px) {
+		grid-template-columns: 100%;
+	}
+
+	.post-content {
+		width: 100%;
+
+		.post-title {
+			padding: 1rem 2rem;
+			position: relative;
+
+			a {
+				font-family: $Anton;
+				font-size: 1.5rem;
+			}
+
+			.editing-title {
+				font-family: $Lexend;
+				color: $text-gray;
+				font-size: 1.1rem;
+			}
+
+			.post-btn {
+				border-radius: 0;
+				padding: 0.7rem 1.5rem;
+				background: $sky;
+				outline: none;
+			}
+		}
+
+		.post-image {
+			padding: 1rem 2rem;
+			position: relative;
+
+			div {
+				overflow: hidden;
+
+				.img {
+					width: 100%;
+					transition: all 1s ease;
+
+					&:hover {
+						transform: scale(1.3);
+					}
+				}
+			}
+
+			.post-info {
+				background: $sky;
+				padding: 1rem;
+				position: absolute;
+				bottom: 0;
+				left: 20vw;
+				border-radius: 3rem;
+
+				@include mq(1130px) {
+					left: 2rem !important;
+					bottom: 1.2rem !important;
+					border-radius: 0 !important;
+				}
+
+				@include mq(520px) {
+					display: none;
+				}
+
+				span {
+					margin: 0 0.5rem;
+				}
+			}
+		}
+
+		blockquote {
+			text-indent: -0.45em;
+			font-size: 80px;
+			width: 95%;
+			font-family: $Abel;
+			quotes: "“" "”" "‘" "’";
+
+			@include mq(520px) {
+				font-size: 60px;
+				margin-left: 1rem;
+			}
+
+			@include mq(320px) {
+				font-size: 40px;
+			}
+
+			&::before {
+				content: open-quote;
+			}
+		}
+
+		@supports (hanging-punctuation: first) {
+			.site-content .post-content blockquote {
+				text-indent: 0;
+				hanging-punctuation: first;
+			}
+		}
+	}
+
+	.pagination {
+		justify-content: center;
+		color: $text-gray;
+		margin: 4rem 0;
+
+		a {
+			padding: 0.6rem 0.9rem;
+			border-radius: 2rem;
+			margin: 0 0.3rem;
+			font-family: $Lexend;
+		}
+
+		.pages {
+			background: $text-gray;
+			color: $white;
+		}
+	}
+
+	.picsart-list {
+		font-family: $Lexend;
+		list-style: initial;
+		color: gray;
+	}
+
+	.two-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+
+		@include mq(520px) {
+			grid-template-columns: repeat(1, 1fr);
+		}
+
+		.grid-item {
+			display: grid;
+		}
+
+		.grid-image {
+			width: 100%;
+			height: 300px;
+			object-fit: contain;
+		}
+
+		p {
+			margin: 1rem auto;
+		}
+	}
+
+	.posts h1 {
+		@include mq(320px) {
+			font-size: 1.5rem;
+		}
+	}
+
+	.youtube-items {
+		@include mq(1130px) {
+			grid-template-columns: repeat(2, 1fr) !important;
+		}
+
+		@include mq(750px) {
+			grid-template-columns: repeat(1, 1fr) !important;
+		}
+	}
+
+	.cycling-sites {
+		@include mq(1130px) {
+			height: 360px;
+		}
+
+		@include mq(750px) {
+			height: 360px;
+		}
+
+		@include mq(52px) {
+			height: 215px;
+		}
+	}
+}

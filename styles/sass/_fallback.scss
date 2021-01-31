@@ -1,0 +1,20 @@
+.icon-wrapper {
+	display: grid;
+
+	.icon {
+		font-size: 5rem;
+		color: gray;
+		margin: 15rem auto;
+		transform: translate(-50%, -50%);
+		animation: spinLogo 2s infinite ease-out;
+	}
+
+	@keyframes spinLogo {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(359deg);
+		}
+	}
+}
