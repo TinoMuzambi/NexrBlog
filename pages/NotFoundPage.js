@@ -1,14 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import { Helmet } from "react-helmet";
+import Meta from "../components/Meta";
 
 const NotFoundPage = () => (
 	<>
-		<Helmet>
-			<title>Not Found | Blog.TinoMuzambi</title>
-			<meta name="description" content="404 - Page not found" />
-			<meta itemprop="image" content="/logo512.png" />
-		</Helmet>
+		<Meta
+			title="Not Found | Blog.TinoMuzambi"
+			description="404 - Page not found"
+		/>
 		<div className="not-found-page">
 			<h1 className="title">Looks like you got lost.</h1>
 			<Link to="/">
