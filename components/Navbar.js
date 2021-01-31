@@ -1,7 +1,6 @@
 import React from "react";
 import scrollToComponent from "react-scroll-to-component";
-import { Link, useLocation } from "react-router-dom";
-import { withRouter } from "react-router";
+import Link from "next/link";
 import { FaBars } from "react-icons/fa";
 import SocialIcons from "./SocialIcons";
 
@@ -11,9 +10,10 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 	const toggleCollapse = () => {
 		// Toggle collapse class on navbar.
 		const nav = document.querySelector(".nav");
-		location.pathname === "/"
-			? nav.classList.toggle("collapse")
-			: nav.classList.toggle("collapse-sm");
+		nav.classList.toggle("collapse");
+		// location.pathname === "/"
+		// 	? nav.classList.toggle("collapse")
+		// 	: nav.classList.toggle("collapse-sm");
 	};
 
 	return (
@@ -106,4 +106,4 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 	);
 };
 
-export default withRouter(Navbar);
+export default Navbar;
