@@ -56,7 +56,7 @@ const Blogs = ({ blogs, category, search, blogsRef }) => {
 				>
 					<div className="post-image">
 						<div>
-							<Link href={`/blogs/${blog.url}`}>
+							<Link href={"/blogs/[url]"}>
 								<img src={blog.image} className="img" alt="shower" />
 							</Link>
 						</div>
@@ -77,7 +77,7 @@ const Blogs = ({ blogs, category, search, blogsRef }) => {
 						</div>
 					</div>
 					<div className="post-title">
-						<Link href={`/blogs/${blog.url}`}>
+						<Link href={"blogs/[url]"}>
 							<>
 								{blog.title}
 								{ReactHtmlParser(

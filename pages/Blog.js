@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
-import blogs from "../data/blogs";
 import Sidebar from "../components/Sidebar";
 import { FaUser, FaCalendar } from "react-icons/fa";
 import Moment from "react-moment";
 import Disqus from "../components/Disqus";
 import ReactHtmlParser from "react-html-parser";
 import { Helmet } from "react-helmet";
+// import { useRouter } from "next/router";
 
-const Blog = ({ match }) => {
-	const [name, setName] = useState(match.params.name);
+const Blog = ({ blog }) => {
+	const [name, setName] = useState(name);
+	// const router = useRouter();
 
-	useEffect(() => {
-		setName(match.params.name);
-	}, [match.url, match.params.name]);
+	// useEffect(() => {
+	// 	setName(match.params.name);
+	// }, [match.url, match.params.name]);
 
 	const title = name; // Finding relevant blog.
 	const blog = blogs.find((blog) => blog.url === title);
