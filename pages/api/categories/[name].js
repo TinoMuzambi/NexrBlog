@@ -1,7 +1,9 @@
 import { categories } from "../../../data/categories";
 
 export default function handler({ query: { name } }, res) {
-	const filtered = categories.filter((category) => category.name === name);
+	const filtered = categories.filter(
+		(category) => category.name.toLowerCase() === name
+	);
 
 	if (filtered.length > 0) {
 		res.status(200).json(filtered[0]);
