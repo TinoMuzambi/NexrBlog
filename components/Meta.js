@@ -11,9 +11,9 @@ const Meta = ({ title, keywords, description, image, url }) => {
 			<meta name="theme-color" content="#000000" />
 
 			{/* <!-- Google / Search Engine Tags --> */}
-			<meta itemprop="name" content={title} />
-			<meta itemprop="description" content={description} />
-			<meta itemprop="image" content={image} />
+			<meta itemProp="name" content={title} />
+			<meta itemProp="description" content={description} />
+			<meta itemProp="image" content={image} />
 
 			{/* <!-- Facebook Meta Tags --> */}
 			<meta property="og:url" content={url} />

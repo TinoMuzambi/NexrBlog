@@ -27,6 +27,8 @@ const blog = ({ blog, blogs, categories }) => {
 				description={ReactHtmlParser(
 					currBlog.content.slice(0, blog.content.indexOf("<br>")) + "</p>"
 				)}
+				image={currBlog.image}
+				url={`https://blog.tinomuzambi.com/${currBlog.url}`}
 			/>
 			<div className="container" id="blogs">
 				<div className="site-content">
