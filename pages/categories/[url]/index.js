@@ -49,7 +49,7 @@ const category = ({ category, blogs, categories }) => {
 
 export default category;
 
-blog.defaultProps = {
+category.defaultProps = {
 	category: {},
 	blogs: [],
 	categories: [],
