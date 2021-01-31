@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Meta from "./Meta";
+import Meta from "../components/Meta";
 
-const NotFoundPage = () => (
+const Custom404 = () => (
 	<>
 		<Meta
 			title="Not Found | Blog.TinoMuzambi"
@@ -18,4 +18,4 @@ const NotFoundPage = () => (
 	</>
 );
 
-export default NotFoundPage;
+export default Custom404;
