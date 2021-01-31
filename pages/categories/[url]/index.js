@@ -34,12 +34,7 @@ const category = ({ category, blogs, categories }) => {
 						<h1>{category.name}</h1>
 						{/* Only render component if there are blogs to show for category */}
 						{filteredBlogs.length > 0 ? (
-							<Blogs
-								blogs={filteredBlogs}
-								category={true}
-								root={ref}
-								search={false}
-							/>
+							<Blogs blogs={filteredBlogs} category={true} search={false} />
 						) : (
 							<h2>Nothing here yet...</h2>
 						)}

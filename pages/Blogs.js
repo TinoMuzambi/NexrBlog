@@ -10,10 +10,18 @@ import Link from "next/link";
 import Moment from "react-moment";
 import ReactHtmlParser from "react-html-parser";
 import JwPagination from "jw-react-pagination";
+import { useRouter } from "next/router";
 
 const Blogs = ({ blogs, category, search, blogsRef }) => {
 	const [blogItems] = useState(blogs); // Set state to list of blogs.
 	const [displayBlogs, setDisplayBlogs] = useState([]); // Blogs currently being displayed.
+	const router = useRouter();
+
+	useEffect(() => {
+		if (router.pathname !== "/" || search) {
+			setDisplayBlogs(blogs); // Ensure blog content changes when url changes.
+		}
+	}, [router.pathname, blogs, search]);
 
 	const handlePageChange = (displayBlogs) => {
 		// Handing pagination page changes.
