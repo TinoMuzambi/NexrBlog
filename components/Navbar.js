@@ -64,7 +64,9 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 								// 	align: "top",
 								// 	duration: 1500,
 								// })
-								featured.current.scrollIntoView({ behavior: "smooth" })
+								document
+									.querySelector(".featured")
+									.scrollIntoView({ behavior: "smooth" })
 							}
 						>
 							Featured
@@ -82,7 +84,9 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 								// 	align: "top",
 								// 	duration: 1500,
 								// })
-								blogsRef.current.scrollIntoView({ behavior: "smooth" })
+								document
+									.querySelector(".blogs")
+									.scrollIntoView({ behavior: "smooth" })
 							}
 						>
 							Blogs
@@ -98,7 +102,9 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 							// 	align: "top",
 							// 	duration: 1500,
 							// })
-							footer.current.scrollIntoView({ behavior: "smooth" })
+							document
+								.querySelector("footer")
+								.scrollIntoView({ behavior: "smooth" })
 						}
 					>
 						Socials

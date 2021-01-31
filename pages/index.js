@@ -78,12 +78,7 @@ export default function Home({ blogs, categories, item }) {
 			<section className="container" id="blogs">
 				<div className="site-content">
 					<section className="blogs">
-						<Blogs
-							blogs={homeBlogs}
-							category={false}
-							blogsRef={blogsRef}
-							search={searching}
-						/>
+						<Blogs blogs={homeBlogs} category={false} search={searching} />
 					</section>
 
 					<Sidebar

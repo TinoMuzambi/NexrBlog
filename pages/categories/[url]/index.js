@@ -1,12 +1,9 @@
-import { useRef } from "react";
 import Blogs from "../../../pages/blogs";
 import { server } from "../../../config";
 import Meta from "../../../components/Meta";
 import Sidebar from "../../../components/Sidebar";
 
 const category = ({ category, blogs, categories }) => {
-	const ref = useRef(null);
-
 	const filteredBlogs = blogs // Getting list that doesn't include current category for other blogs section.
 		.filter((eachItem) => {
 			return eachItem["category"].toLowerCase().includes(category.url);
@@ -31,7 +28,7 @@ const category = ({ category, blogs, categories }) => {
 				description={category.name}
 				url={`https://blog.tinomuzambi.com/${category.url}`}
 			/>
-			<div className="container" ref={ref}>
+			<div className="container">
 				<div className="site-content">
 					<div className="posts">
 						<h1>{category.name}</h1>
@@ -42,7 +39,6 @@ const category = ({ category, blogs, categories }) => {
 								category={true}
 								root={ref}
 								search={false}
-								blogsRef={ref}
 							/>
 						) : (
 							<h2>Nothing here yet...</h2>
