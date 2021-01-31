@@ -2,4 +2,4 @@
 // dev
 // ? "http://localhost:3000"
 // : "https://blog.tinomuzambi.com";
-export const server = "https://tempblogserver.herokuapp.com/";
+export const server = "https://tempblogserver.herokuapp.com";
