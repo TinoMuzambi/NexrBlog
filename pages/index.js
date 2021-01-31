@@ -4,6 +4,7 @@ import Blogs from "./blogs";
 import Sidebar from "../components/Sidebar";
 import About from "../components/About";
 import Featured from "../components/Featured";
+import Search from "../components/Search";
 import AOS from "aos";
 import { useRouter } from "next/router";
 
@@ -84,6 +85,9 @@ export default function Home({ blogs, categories, item }) {
 			<section className="featured" ref={featured}>
 				<Featured item={item} /> {/* Featured section */}
 			</section>
+			<div className="search-wrapper">
+				<Search searchBlogs={searchBlogs} /> {/* Search box */}
+			</div>
 			<section className="container" id="blogs">
 				<div className="site-content">
 					<section className="blogs" ref={blogsRef}>
