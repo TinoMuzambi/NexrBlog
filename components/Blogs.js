@@ -1,21 +1,14 @@
 import { useState, useEffect } from "react";
-import {
-	FaUser,
-	FaCalendar,
-	FaArrowRight,
-	FaChevronLeft,
-	FaChevronRight,
-} from "react-icons/fa";
-import Link from "next/link";
-import Moment from "react-moment";
-import ReactHtmlParser from "react-html-parser";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import JwPagination from "jw-react-pagination";
 import { useRouter } from "next/router";
+import Blog from "./Blog";
 
-const Blogs = ({ blogs, category, search }) => {
+const Blogs = ({ blogs, category, search, fromCategory, searchTerm }) => {
 	const [blogItems] = useState(blogs); // Set state to list of blogs.
 	const [displayBlogs, setDisplayBlogs] = useState([]); // Blogs currently being displayed.
 	const router = useRouter();
+	const [queryText] = useState(searchTerm);
 
 	useEffect(() => {
 		if (router.pathname !== "/" || search) {
@@ -34,78 +27,66 @@ const Blogs = ({ blogs, category, search }) => {
 		next: <FaChevronRight />,
 	};
 
+	const filteredBlogs = blogs // Getting list that doesn't include current category for other blogs section.
+		.filter((eachItem) => {
+			return eachItem["category"].toLowerCase().includes(category.url);
+		})
+		.filter((eachItem) => {
+			return !eachItem["future"] === true;
+		});
+
+	let homeBlogs = blogs.filter((eachItem) => {
+		// Only get published blogs for main content.
+		return eachItem["future"] === false;
+	});
+
+	homeBlogs = homeBlogs.filter((eachItem) => {
+		// Only display blogs matching search.
+		return (
+			eachItem["title"] // Search in title.
+				.toLowerCase()
+				.includes(queryText.toLowerCase()) ||
+			eachItem["category"] // Search in category.
+				.toLowerCase()
+				.includes(queryText.toLowerCase()) ||
+			eachItem["content"] // Search in content.
+				.toLowerCase()
+				.includes(queryText.toLowerCase())
+		);
+	});
+
+	fromCategory ? setDisplayBlogs(filteredBlogs) : setDisplayBlogs(homeBlogs);
+
 	return (
 		<div className="posts">
-			{category ? "" : <h1>Blogs</h1>}
+			{!category && <h1>Blogs</h1>}
 			{/* Conditionally render element. */}
-			{displayBlogs.map((blog, key) => (
-				<div
-					className="post-content"
-					data-aos="zoom-in"
-					data-aos-delay="200"
-					key={key}
-				>
-					<div className="post-image">
-						<div>
-							<Link href={`/blogs/${blog.url}`}>
-								<a>
-									<img src={blog.image} className="img" alt="shower" />
-								</a>
-							</Link>
-						</div>
-						<div className="post-info flex-row">
-							<span>
-								<i className="fas fa-user text-gray">
-									<FaUser />
-								</i>
-								&nbsp;&nbsp;Me
-							</span>
-							<span>
-								<i className="fas fa-calendar-alt text-gray">
-									<FaCalendar />
-								</i>
-								&nbsp;&nbsp;
-								<Moment format="MMMM DD, YYYY">{blog.date}</Moment>
-							</span>
-						</div>
+			{/* Only render component if there are blogs to show for category */}
+			{displayBlogs ? (
+				<>
+					{displayBlogs.map((blog, key) => (
+						<Blog blog={blog} />
+					))}
+					<div
+						className="page-holder text-center"
+						onClick={() =>
+							document
+								.querySelector(".blogs")
+								?.scrollIntoView({ behavior: "smooth" })
+						}
+					>
+						{/* Pagination element */}
+						<JwPagination
+							items={blogItems}
+							onChangePage={handlePageChange}
+							pageSize={4}
+							labels={customLabels}
+						/>
 					</div>
-					<div className="post-title">
-						<Link href={`/blogs/${blog.url}`}>
-							<a>
-								<a>{blog.title}</a>
-								{ReactHtmlParser(
-									blog.content.slice(0, blog.content.indexOf("<br>")) + "</p>"
-								)}
-								{/* Parse first paragraph of HTML blog content. */}
-								<button className="btn post-btn">
-									Read More &nbsp;{" "}
-									<i className="fas fa-arrow-right">
-										<FaArrowRight />
-									</i>
-								</button>
-							</a>
-						</Link>
-					</div>
-					<hr className={`${key === blogs.length - 1 ? "is-hidden" : ""}`}></hr>
-					{/* Conditionally render element */}
-				</div>
-			))}
-			<div
-				className="page-holder text-center"
-				onClick={() =>
-					document
-						.querySelector(".blogs")
-						?.scrollIntoView({ behavior: "smooth" })
-				}
-			>
-				{/* Pagination element */}
-				<JwPagination
-					items={blogItems}
-					onChangePage={handlePageChange}
-					pageSize={4}
-					labels={customLabels}
-				/>
-			</div>
+				</>
+			) : (
+				<h2>Nothing here yet...</h2>
+			)}
 		</div>
 	);
 };
@@ -116,4 +97,17 @@ Blogs.defaultProps = {
 	category: false,
 	blogs: [],
 	search: false,
+	fromCategory: false,
+	searchTerm: "",
+};
+
+export const getStaticProps = async () => {
+	const res = await fetch(`${server}/api/blogs`);
+	const blogs = await res.json();
+
+	return {
+		props: {
+			blogs,
+		},
+	};
 };

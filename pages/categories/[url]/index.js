@@ -3,15 +3,7 @@ import { server } from "../../../config";
 import Meta from "../../../components/Meta";
 import Sidebar from "../../../components/Sidebar";
 
-const category = ({ category, blogs }) => {
-	const filteredBlogs = blogs // Getting list that doesn't include current category for other blogs section.
-		.filter((eachItem) => {
-			return eachItem["category"].toLowerCase().includes(category.url);
-		})
-		.filter((eachItem) => {
-			return !eachItem["future"] === true;
-		});
-
+const category = ({ category }) => {
 	return (
 		<>
 			<Meta
@@ -23,12 +15,8 @@ const category = ({ category, blogs }) => {
 				<div className="site-content">
 					<div className="posts">
 						<h1>{category.name}</h1>
-						{/* Only render component if there are blogs to show for category */}
-						{filteredBlogs.length > 0 ? (
-							<Blogs blogs={filteredBlogs} category={true} search={false} />
-						) : (
-							<h2>Nothing here yet...</h2>
-						)}
+
+						<Blogs category={category} search={false} fromCategory={true} />
 					</div>
 					<Sidebar side={true} future={false} />
 					{/* Sidebar section populated with links to other blogs. */}
@@ -42,21 +30,15 @@ export default category;
 
 category.defaultProps = {
 	category: {},
-	blogs: [],
-	categories: [],
 };
 
 export const getStaticProps = async (context) => {
 	const res = await fetch(`${server}/api/categories/${context.params.url}/`);
 	const category = await res.json();
 
-	const res2 = await fetch(`${server}/api/blogs`);
-	const blogs = await res2.json();
-
 	return {
 		props: {
 			category,
-			blogs,
 		},
 	};
 };
