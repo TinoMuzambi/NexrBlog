@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { server } from "../config";
 import Blogs from "./blogs";
 import Sidebar from "../components/Sidebar";
+import About from "../components/About";
 import AOS from "aos";
 import { useRouter } from "next/router";
 
@@ -76,6 +77,9 @@ export default function Home({ blogs, categories }) {
 
 	return (
 		<>
+			<section className="about" ref={about}>
+				<About /> {/* About section */}
+			</section>
 			<section className="container" id="blogs">
 				<div className="site-content">
 					<section className="blogs" ref={blogsRef}>
