@@ -21,7 +21,7 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 			<div className="nav-menu">
 				<div className="nav-brand">
 					<Link href="/" className="text-gray">
-						Blog.TinoMuzambi
+						<a>Blog.TinoMuzambi</a>
 					</Link>
 				</div>
 				<div className="toggle-collapse">
@@ -49,7 +49,9 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 						</li>
 					) : (
 						<Link href="/">
-							<li className="nav-link">Home</li>
+							<a>
+								<li className="nav-link">Home</li>
+							</a>
 						</Link>
 					)}
 					{/* Conditionally render element based on location */}

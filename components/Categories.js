@@ -7,10 +7,16 @@ const Categories = ({ categories }) => (
 		<ul className="category-list">
 			{categories.map((category, key) => (
 				<Link href={`/categories/${category.url}`} key={key}>
-					<li className="list-items" data-aos="fade-left" data-aos-delay="200">
-						{category.name}
-						<span>({category.count})</span>
-					</li>
+					<a>
+						<li
+							className="list-items"
+							data-aos="fade-left"
+							data-aos-delay="200"
+						>
+							{category.name}
+							<span>({category.count})</span>
+						</li>
+					</a>
 				</Link>
 			))}
 		</ul>

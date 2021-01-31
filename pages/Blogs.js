@@ -56,8 +56,10 @@ const Blogs = ({ blogs, category, search, blogsRef }) => {
 				>
 					<div className="post-image">
 						<div>
-							<Link href="/blogs/[url]" as={`/blogs/${blog.url}`}>
-								<img src={blog.image} className="img" alt="shower" />
+							<Link href={`/blogs/${blog.url}`}>
+								<a>
+									<img src={blog.image} className="img" alt="shower" />
+								</a>
 							</Link>
 						</div>
 						<div className="post-info flex-row">
@@ -77,8 +79,8 @@ const Blogs = ({ blogs, category, search, blogsRef }) => {
 						</div>
 					</div>
 					<div className="post-title">
-						<Link href="blogs/[url]" as={`/blogs/${blog.url}`}>
-							<>
+						<Link href={`/blogs/${blog.url}`}>
+							<a>
 								<a>{blog.title}</a>
 								{ReactHtmlParser(
 									blog.content.slice(0, blog.content.indexOf("<br>")) + "</p>"
@@ -90,7 +92,7 @@ const Blogs = ({ blogs, category, search, blogsRef }) => {
 										<FaArrowRight />
 									</i>
 								</button>
-							</>
+							</a>
 						</Link>
 					</div>
 					<hr className={`${key === blogs.length - 1 ? "is-hidden" : ""}`}></hr>

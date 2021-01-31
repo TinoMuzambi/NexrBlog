@@ -22,7 +22,9 @@ const SideBlog = ({ blogs, future }) => (
 							<img src={blog.image} className="img" alt={blog.alt} />
 						) : (
 							<Link href={`/blogs/${blog.url}`}>
-								<img src={blog.image} className="img" alt={blog.alt} />
+								<a>
+									<img src={blog.image} className="img" alt={blog.alt} />
+								</a>
 							</Link>
 						)}
 					</div>
@@ -49,7 +51,9 @@ const SideBlog = ({ blogs, future }) => (
 							{blog.title}
 						</h3>
 					) : (
-						<Link href={`/blogs/${blog.url}`}>{blog.title}</Link>
+						<Link href={`/blogs/${blog.url}`}>
+							<a>{blog.title}</a>
+						</Link>
 					)}
 				</div>
 			</div>
