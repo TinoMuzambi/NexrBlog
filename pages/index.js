@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { server } from "../config";
 import Blogs from "./blogs";
+import Sidebar from "../components/Sidebar";
 import AOS from "aos";
 import { useRouter } from "next/router";
 
@@ -85,6 +86,10 @@ export default function Home({ blogs }) {
 							search={searching}
 						/>
 					</section>
+
+					<Sidebar blogs={filteredBlogs} future={true} />
+					{/* Sidebar section - pass list of blogs, true for future to signal
+											showing future blogs.*/}
 				</div>
 			</section>
 		</>

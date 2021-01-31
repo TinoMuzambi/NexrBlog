@@ -1,6 +1,6 @@
 import React from "react";
 import { FaCalendar } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import Moment from "react-moment";
 
@@ -21,7 +21,7 @@ const SideBlog = ({ blogs, future }) => (
 						{future ? (
 							<img src={blog.image} className="img" alt={blog.alt} />
 						) : (
-							<Link to={`/blogs/${blog.url}`}>
+							<Link href={`/blogs/${blog.url}`}>
 								<img src={blog.image} className="img" alt={blog.alt} />
 							</Link>
 						)}
@@ -49,7 +49,7 @@ const SideBlog = ({ blogs, future }) => (
 							{blog.title}
 						</h3>
 					) : (
-						<Link to={`/blogs/${blog.url}`}>{blog.title}</Link>
+						<Link href={`/blogs/${blog.url}`}>{blog.title}</Link>
 					)}
 				</div>
 			</div>
