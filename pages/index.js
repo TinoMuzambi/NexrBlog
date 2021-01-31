@@ -7,7 +7,7 @@ import Featured from "../components/Featured";
 import Search from "../components/Search";
 import AOS from "aos";
 
-export default function Home({ blogs, categories, item }) {
+export default function Home({ blogs, item }) {
 	const [queryText, setQueryText] = useState("");
 	const [searching, setSearching] = useState(false);
 
@@ -38,11 +38,6 @@ export default function Home({ blogs, categories, item }) {
 			});
 		};
 	}, []);
-
-	const filteredBlogs = blogs.filter((eachItem) => {
-		// Only get future blogs for sidebar.
-		return eachItem["future"] === true;
-	});
 
 	let homeBlogs = blogs.filter((eachItem) => {
 		// Only get published blogs for main content.
@@ -81,11 +76,7 @@ export default function Home({ blogs, categories, item }) {
 						<Blogs blogs={homeBlogs} category={false} search={searching} />
 					</section>
 
-					<Sidebar
-						blogs={filteredBlogs}
-						future={true}
-						categories={categories}
-					/>
+					<Sidebar future={true} />
 					{/* Sidebar section - pass list of blogs, true for future to signal
 											showing future blogs.*/}
 				</div>
@@ -98,16 +89,12 @@ export const getStaticProps = async () => {
 	const res = await fetch(`${server}/api/blogs`);
 	const blogs = await res.json();
 
-	const res2 = await fetch(`${server}/api/categories`);
-	const categories = await res2.json();
-
-	const res3 = await fetch(`${server}/api/featured-item`);
-	const item = await res3.json();
+	const res2 = await fetch(`${server}/api/featured-item`);
+	const item = await res2.json();
 
 	return {
 		props: {
 			blogs,
-			categories,
 			item,
 		},
 	};

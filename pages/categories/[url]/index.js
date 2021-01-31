@@ -3,7 +3,7 @@ import { server } from "../../../config";
 import Meta from "../../../components/Meta";
 import Sidebar from "../../../components/Sidebar";
 
-const category = ({ category, blogs, categories }) => {
+const category = ({ category, blogs }) => {
 	const filteredBlogs = blogs // Getting list that doesn't include current category for other blogs section.
 		.filter((eachItem) => {
 			return eachItem["category"].toLowerCase().includes(category.url);
@@ -11,15 +11,6 @@ const category = ({ category, blogs, categories }) => {
 		.filter((eachItem) => {
 			return !eachItem["future"] === true;
 		});
-	const sideBlogs = blogs // Getting list that doesn't include current blog for sidebar section.
-		.filter((eachItem) => {
-			return (
-				!eachItem["category"].toLowerCase().includes(category.url) &&
-				!eachItem["future"] === true
-			);
-		})
-
-		.slice(0, 3);
 
 	return (
 		<>
@@ -39,7 +30,7 @@ const category = ({ category, blogs, categories }) => {
 							<h2>Nothing here yet...</h2>
 						)}
 					</div>
-					<Sidebar blogs={sideBlogs} future={false} categories={categories} />
+					<Sidebar side={true} future={false} />
 					{/* Sidebar section populated with links to other blogs. */}
 				</div>
 			</div>
@@ -59,17 +50,13 @@ export const getStaticProps = async (context) => {
 	const res = await fetch(`${server}/api/categories/${context.params.url}/`);
 	const category = await res.json();
 
-	const res2 = await fetch(`${server}/api/categories/`);
-	const categories = await res2.json();
-
-	const res3 = await fetch(`${server}/api/blogs`);
-	const blogs = await res3.json();
+	const res2 = await fetch(`${server}/api/blogs`);
+	const blogs = await res2.json();
 
 	return {
 		props: {
 			category,
 			blogs,
-			categories,
 		},
 	};
 };

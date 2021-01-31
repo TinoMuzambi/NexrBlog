@@ -113,7 +113,7 @@ const Blogs = ({ blogs, category, search }) => {
 export default Blogs;
 
 Blogs.defaultProps = {
-	category: {},
+	category: false,
 	blogs: [],
 	search: false,
 };
