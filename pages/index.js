@@ -3,10 +3,11 @@ import { server } from "../config";
 import Blogs from "./blogs";
 import Sidebar from "../components/Sidebar";
 import About from "../components/About";
+import Featured from "../components/Featured";
 import AOS from "aos";
 import { useRouter } from "next/router";
 
-export default function Home({ blogs, categories }) {
+export default function Home({ blogs, categories, item }) {
 	const [queryText, setQueryText] = useState("");
 	const [searching, setSearching] = useState(false);
 
@@ -80,6 +81,9 @@ export default function Home({ blogs, categories }) {
 			<section className="about" ref={about}>
 				<About /> {/* About section */}
 			</section>
+			<section className="featured" ref={featured}>
+				<Featured item={item} /> {/* Featured section */}
+			</section>
 			<section className="container" id="blogs">
 				<div className="site-content">
 					<section className="blogs" ref={blogsRef}>
@@ -111,10 +115,14 @@ export const getStaticProps = async () => {
 	const res2 = await fetch(`${server}/api/categories`);
 	const categories = await res2.json();
 
+	const res3 = await fetch(`${server}/api/featured-item`);
+	const item = await res3.json();
+
 	return {
 		props: {
 			blogs,
 			categories,
+			item,
 		},
 	};
 };

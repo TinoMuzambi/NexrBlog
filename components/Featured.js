@@ -1,10 +1,9 @@
 import React from "react";
 import ReactPlayer from "react-player/youtube";
-import item from "../data/featured-item";
 import Moment from "react-moment";
 import ReactHtmlParser from "react-html-parser";
 
-const Featured = () => (
+const Featured = ({ item }) => (
 	<>
 		<div className="container">
 			<div
