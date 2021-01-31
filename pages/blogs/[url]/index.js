@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { server } from "../../../config";
-import Sidebar from "../../../components/SideBar";
+import Sidebar from "../../../components/Sidebar";
 import { FaUser, FaCalendar } from "react-icons/fa";
 import Moment from "react-moment";
 import Disqus from "../../../components/Disqus";
