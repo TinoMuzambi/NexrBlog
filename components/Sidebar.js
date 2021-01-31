@@ -10,8 +10,8 @@ const Sidebar = ({ future, side, category, title }) => {
 	const filteredBlogs = blogs // Getting list that doesn't include current blog nor future blogs for other blogs section.
 		.filter((eachItem) => {
 			return (
-				!eachItem["url"].toLowerCase().includes(title.toLowerCase()) &&
-				!eachItem["future"] === true
+				!eachItem.url.toLowerCase().includes(title.toLowerCase()) &&
+				!eachItem.future !== future
 			);
 		})
 		.slice(0, 3);
@@ -19,12 +19,14 @@ const Sidebar = ({ future, side, category, title }) => {
 	const sideBlogs = blogs // Getting list that doesn't include current blog for sidebar section.
 		.filter((eachItem) => {
 			return (
-				!eachItem["category"].toLowerCase().includes(category.url) &&
-				!eachItem["future"] === true
+				!eachItem.category.toLowerCase().includes(category.url) &&
+				!eachItem.future !== future
 			);
 		})
 
 		.slice(0, 3);
+
+	console.log(sideBlogs);
 
 	return (
 		<aside className="sidebar">

@@ -1,13 +1,9 @@
-import { useContext } from "react";
 import { FaCalendar } from "react-icons/fa";
-import { GlobalContext } from "../context/GlobalState";
 import Link from "next/link";
 
 import Moment from "react-moment";
 
-const SideBlog = ({ future }) => {
-	const { blogs } = useContext(GlobalContext);
-
+const SideBlog = ({ blogs, future }) => {
 	return (
 		<>
 			<h2>{future ? "Future" : "Other"} Blogs</h2>

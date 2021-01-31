@@ -1,4 +1,4 @@
-export default (state, action) => {
+const reducer = (state, action) => {
 	switch (action.type) {
 		case "UPDATE_BLOGS":
 			return {
@@ -19,3 +19,5 @@ export default (state, action) => {
 			return state;
 	}
 };
+
+export default reducer;

@@ -19,7 +19,6 @@ const Blogs = ({ category, search, fromCategory, searchTerm }) => {
 	}, [router.pathname, blogs, search]);
 
 	useEffect(() => {
-		console.log(blogs);
 		displayBlogs = blogs;
 	}, []);
 
