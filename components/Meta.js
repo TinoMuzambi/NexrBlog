@@ -4,21 +4,7 @@ const Meta = ({ title, keywords, description }) => {
 	return (
 		<Head>
 			{/* Global site tag (gtag.js) - Google Analytics */}
-			<script
-				async
-				src="https://www.googletagmanager.com/gtag/js?id=UA-141921777-1"
-			></script>
-			<script>
-				{(window.dataLayer = window.dataLayer || [])}
 
-				{function gtag() {
-					dataLayer.push(arguments);
-				}}
-
-				{gtag("js", new Date())}
-
-				{gtag("config", "UA-141921777-1")}
-			</script>
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
 			<meta name="keywords" content={keywords} />
 			<meta name="description" content={description} />
