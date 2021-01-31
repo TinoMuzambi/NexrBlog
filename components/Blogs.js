@@ -20,7 +20,7 @@ const Blogs = ({ category, search, fromCategory, searchTerm }) => {
 
 	useEffect(() => {
 		displayBlogs = blogs;
-	}, []);
+	}, [displayBlogs]);
 
 	useEffect(() => {
 		setQueryText(searchTerm);
