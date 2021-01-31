@@ -5,6 +5,7 @@ import { FaUser, FaCalendar } from "react-icons/fa";
 import Moment from "react-moment";
 import Disqus from "../../../components/Disqus";
 import ReactHtmlParser from "react-html-parser";
+import Meta from "../../../components/Meta";
 
 const blog = ({ blog, blogs, categories }) => {
 	const [name, setName] = useState(blog.url);
@@ -20,55 +21,69 @@ const blog = ({ blog, blogs, categories }) => {
 		})
 		.slice(0, 3);
 	return (
-		<div className="container" id="blogs">
-			<div className="site-content">
-				<div className="posts">
-					<div className="post-content" data-aos="zoom-in" data-aos-delay="200">
-						<div className="post-title">
-							<h1>{currBlog.title}</h1>
-							<h3>
-								<i className="fas fa-user text-gray">
-									<FaUser />
-								</i>
-								&nbsp;Me&nbsp;&nbsp;
-								<i className="fas fa-calendar-alt text-gray">
-									<FaCalendar />
-								</i>
-								&nbsp;<Moment format="MMM DD, YYYY">{currBlog.date}</Moment>
-							</h3>
-							<div className="post-image">
-								<div>
-									<img
-										src={currBlog.image}
-										className="img"
-										alt={currBlog.alt}
-									/>
+		<>
+			<Meta
+				title={`${currBlog.title} | Blog.TinoMuzambi`}
+				description={ReactHtmlParser(
+					currBlog.content.slice(0, blog.content.indexOf("<br>")) + "</p>"
+				)}
+			/>
+			<div className="container" id="blogs">
+				<div className="site-content">
+					<div className="posts">
+						<div
+							className="post-content"
+							data-aos="zoom-in"
+							data-aos-delay="200"
+						>
+							<div className="post-title">
+								<h1>{currBlog.title}</h1>
+								<h3>
+									<i className="fas fa-user text-gray">
+										<FaUser />
+									</i>
+									&nbsp;Me&nbsp;&nbsp;
+									<i className="fas fa-calendar-alt text-gray">
+										<FaCalendar />
+									</i>
+									&nbsp;<Moment format="MMM DD, YYYY">{currBlog.date}</Moment>
+								</h3>
+								<div className="post-image">
+									<div>
+										<img
+											src={currBlog.image}
+											className="img"
+											alt={currBlog.alt}
+										/>
+									</div>
 								</div>
 							</div>
+							<div className="blog-html">
+								{ReactHtmlParser(currBlog.content)}
+							</div>
+							{/* Parsing HTML blog content */}
 						</div>
-						<div className="blog-html">{ReactHtmlParser(currBlog.content)}</div>
-						{/* Parsing HTML blog content */}
+
+						{/* <!---------------------------------  Disqus Comments Plugin  -------------------------------------- --> */}
+
+						<Disqus
+							title={currBlog.title}
+							url={currBlog.disqusURL}
+							identifier={currBlog.disqusIdentifier}
+							src={currBlog.disqusSrc}
+						/>
+
+						{/* <!--------------X------------------  Disqus Comments Plugin  ------------------------X------------- --> */}
 					</div>
-
-					{/* <!---------------------------------  Disqus Comments Plugin  -------------------------------------- --> */}
-
-					<Disqus
-						title={currBlog.title}
-						url={currBlog.disqusURL}
-						identifier={currBlog.disqusIdentifier}
-						src={currBlog.disqusSrc}
+					<Sidebar
+						blogs={filteredBlogs}
+						future={currBlog.future}
+						categories={categories}
 					/>
-
-					{/* <!--------------X------------------  Disqus Comments Plugin  ------------------------X------------- --> */}
+					{/* Sidebar section populated with links to other blogs. */}
 				</div>
-				<Sidebar
-					blogs={filteredBlogs}
-					future={currBlog.future}
-					categories={categories}
-				/>
-				{/* Sidebar section populated with links to other blogs. */}
 			</div>
-		</div>
+		</>
 	);
 };
 
