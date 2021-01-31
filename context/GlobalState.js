@@ -1,10 +1,14 @@
 import { createContext, useReducer } from "react";
+import AppReducer from "./AppReducer";
+import { blogs } from "../data/blogs";
+import { categories } from "../data/categories";
+import { item } from "../data/featured-item";
 
 // Initial state
 const initialState = {
-	blogs: [],
-	categories: [],
-	item: {},
+	blogs: blogs,
+	categories: categories,
+	item: item,
 };
 
 // Create context
