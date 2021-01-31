@@ -1,7 +1,12 @@
 import { server } from "../config";
+import Blogs from "./blogs";
 
-export default function Home() {
-	return "";
+export default function Home({ blogs }) {
+	return (
+		<>
+			<Blogs blogs={blogs} />
+		</>
+	);
 }
 
 export const getStaticProps = async () => {

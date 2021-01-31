@@ -1,19 +1,19 @@
 import React from "react";
-import scrollToComponent from "react-scroll-to-component";
+// import scrollToComponent from "react-scroll-to-component";
 import Link from "next/link";
 import { FaBars } from "react-icons/fa";
 import SocialIcons from "./SocialIcons";
+import { useRouter } from "next/router";
 
 const Navbar = ({ about, featured, blogsRef, footer }) => {
-	// const location = useLocation();
+	const router = useRouter();
 
 	const toggleCollapse = () => {
 		// Toggle collapse class on navbar.
 		const nav = document.querySelector(".nav");
-		nav.classList.toggle("collapse");
-		// location.pathname === "/"
-		// 	? nav.classList.toggle("collapse")
-		// 	: nav.classList.toggle("collapse-sm");
+		router.pathname === "/"
+			? nav.classList.toggle("collapse")
+			: nav.classList.toggle("collapse-sm");
 	};
 
 	return (
@@ -34,15 +34,16 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 					</div>
 					<ul className="nav-items">
 						{/* Either scroll or go home depending on location. */}
-						{location.pathname === "/" ? (
+						{router.pathname === "/" ? (
 							<li
 								className="nav-link"
 								onClick={() =>
-									scrollToComponent(about.current, {
-										offset: 0,
-										align: "top",
-										duration: 1500,
-									})
+									// scrollToComponent(about.current, {
+									// 	offset: 0,
+									// 	align: "top",
+									// 	duration: 1500,
+									// })
+									about.current.scrollIntoView({ behavior: "smooth" })
 								}
 							>
 								Home
@@ -53,15 +54,16 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 							</Link>
 						)}
 						{/* Conditionally render element based on location */}
-						{location.pathname === "/" ? (
+						{router.pathname === "/" ? (
 							<li
 								className="nav-link"
 								onClick={() =>
-									scrollToComponent(featured.current, {
-										offset: 0,
-										align: "top",
-										duration: 1500,
-									})
+									// scrollToComponent(featured.current, {
+									// 	offset: 0,
+									// 	align: "top",
+									// 	duration: 1500,
+									// })
+									featured.current.scrollIntoView({ behavior: "smooth" })
 								}
 							>
 								Featured
@@ -70,15 +72,16 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 							""
 						)}
 						{/* Conditionally render element based on location */}
-						{location.pathname === "/" ? (
+						{router.pathname === "/" ? (
 							<li
 								className="nav-link"
 								onClick={() =>
-									scrollToComponent(blogsRef.current, {
-										offset: 0,
-										align: "top",
-										duration: 1500,
-									})
+									// scrollToComponent(blogsRef.current, {
+									// 	offset: 0,
+									// 	align: "top",
+									// 	duration: 1500,
+									// })
+									blogsRef.current.scrollIntoView({ behavior: "smooth" })
 								}
 							>
 								Blogs
@@ -89,11 +92,12 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 						<li
 							className="nav-link"
 							onClick={() =>
-								scrollToComponent(footer.current, {
-									offset: 0,
-									align: "top",
-									duration: 1500,
-								})
+								// scrollToComponent(footer.current, {
+								// 	offset: 0,
+								// 	align: "top",
+								// 	duration: 1500,
+								// })
+								footer.current.scrollIntoView({ behavior: "smooth" })
 							}
 						>
 							Socials

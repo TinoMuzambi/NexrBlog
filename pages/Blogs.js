@@ -6,33 +6,35 @@ import {
 	FaChevronLeft,
 	FaChevronRight,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Moment from "react-moment";
 import ReactHtmlParser from "react-html-parser";
 import JwPagination from "jw-react-pagination";
-import scrollToComponent from "react-scroll-to-component";
-import { useLocation } from "react-router-dom";
+import { useRouter } from "next/router";
+// import scrollToComponent from "react-scroll-to-component";
+// import { useLocation } from "react-router-dom";
 
 const Blogs = ({ blogs, category, search, blogsRef }) => {
 	const [blogItems] = useState(blogs); // Set state to list of blogs.
 	const [displayBlogs, setDisplayBlogs] = useState([]); // Blogs currently being displayed.
-	const location = useLocation();
+	const router = useRouter();
 
 	useEffect(() => {
-		if (location.pathname !== "/" || search) {
+		if (router.pathname !== "/" || search) {
 			setDisplayBlogs(blogs); // Ensure blog content changes when url changes.
 		}
-	}, [location.pathname, blogs, search]);
+	}, [router.pathname, blogs, search]);
 
 	const handlePageChange = (displayBlogs) => {
 		// Handing pagination page changes.
 		setDisplayBlogs(displayBlogs);
-		scrollToComponent(blogsRef?.current, {
-			// Scroll to top of blogs section.
-			offset: 0,
-			align: "top",
-			duration: 1500,
-		});
+		blogsRef?.current.scrollIntoView({ behavior: "smooth" });
+		// scrollToComponent(blogsRef?.current, {
+		// 	// Scroll to top of blogs section.
+		// 	offset: 0,
+		// 	align: "top",
+		// 	duration: 1500,
+		// });
 	};
 
 	const customLabels = {
@@ -55,7 +57,7 @@ const Blogs = ({ blogs, category, search, blogsRef }) => {
 					>
 						<div className="post-image">
 							<div>
-								<Link to={`/blogs/${blog.url}`}>
+								<Link href={`/blogs/${blog.url}`}>
 									<img src={blog.image} className="img" alt="shower" />
 								</Link>
 							</div>
@@ -76,7 +78,7 @@ const Blogs = ({ blogs, category, search, blogsRef }) => {
 							</div>
 						</div>
 						<div className="post-title">
-							<Link to={`/blogs/${blog.url}`}>
+							<Link href={`/blogs/${blog.url}`}>
 								{blog.title}
 								{ReactHtmlParser(
 									blog.content.slice(0, blog.content.indexOf("<br>")) + "</p>"

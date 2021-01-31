@@ -4,7 +4,7 @@ import Wrapper from "../components/Wrapper";
 function MyApp({ Component, pageProps }) {
 	return (
 		<Wrapper>
-			<Component {...pageProps} />
+			<Component {...pageProps}>hi</Component>
 		</Wrapper>
 	);
 }
