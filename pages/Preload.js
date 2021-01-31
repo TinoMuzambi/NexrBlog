@@ -1,5 +1,3 @@
-import React from "react";
-
 const Preload = () => (
 	<div className="preload">
 		<svg

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 const Disqus = ({ url, id, src }) => {
 	// Disqus for comments.

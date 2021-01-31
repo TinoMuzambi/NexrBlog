@@ -1,5 +1,3 @@
-import React from "react";
-
 const Search = ({ searchBlogs }) => (
 	<div className="search-field">
 		<input

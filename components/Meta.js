@@ -3,8 +3,6 @@ import Head from "next/head";
 const Meta = ({ title, keywords, description, image, url }) => {
 	return (
 		<Head>
-			{/* Global site tag (gtag.js) - Google Analytics */}
-
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
 			<meta name="keywords" content={keywords} />
 			<meta name="description" content={description} />
@@ -48,8 +46,8 @@ const Meta = ({ title, keywords, description, image, url }) => {
 
 Meta.defaultProps = {
 	title: "Blog.TinoMuzambi",
-	keywords: "blog, tech, lifestyle, tino, muzambi",
-	description: "Welcome to my blog",
+	keywords: "blog, tech, lifestyle, tino, muzambi, music",
+	description: "Welcome to my blog.",
 	image: "/assets/logo512.png",
 	url: "https://blog.tinomuzambi.com",
 };

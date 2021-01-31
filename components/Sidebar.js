@@ -1,4 +1,3 @@
-import React from "react";
 import Categories from "./Categories";
 import SideBlog from "./SideBlog";
 
