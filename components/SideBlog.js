@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { FaCalendar } from "react-icons/fa";
+import { GlobalContext } from "../context/GlobalState";
 import Link from "next/link";
 
 import Moment from "react-moment";

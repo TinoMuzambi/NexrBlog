@@ -2,6 +2,7 @@ import ReactPlayer from "react-player/youtube";
 import Moment from "react-moment";
 import ReactHtmlParser from "react-html-parser";
 import { GlobalContext } from "../context/GlobalState";
+import { useContext } from "react";
 
 const Featured = () => {
 	const { item } = useContext(GlobalContext);
