@@ -1,4 +1,4 @@
-import Preload from "./preload";
+import Preload from "./Preload";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Meta from "./Meta";
