@@ -4,7 +4,13 @@ import Blogs from "./blogs";
 export default function Home({ blogs }) {
 	return (
 		<>
-			<Blogs blogs={blogs} />
+			<section className="container" id="blogs">
+				<div className="site-content">
+					<section className="blogs">
+						<Blogs blogs={blogs} />
+					</section>
+				</div>
+			</section>
 		</>
 	);
 }
