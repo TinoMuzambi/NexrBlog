@@ -6,7 +6,6 @@ import About from "../components/About";
 import Featured from "../components/Featured";
 import Search from "../components/Search";
 import AOS from "aos";
-import { useRouter } from "next/router";
 
 export default function Home({ blogs, categories, item }) {
 	const [queryText, setQueryText] = useState("");
@@ -16,7 +15,6 @@ export default function Home({ blogs, categories, item }) {
 	const featured = useRef(null);
 	const blogsRef = useRef(null);
 	const footer = useRef(null);
-	const router = useRouter();
 
 	const searchBlogs = (query) => {
 		// Search by updating queryText state.
@@ -45,12 +43,6 @@ export default function Home({ blogs, categories, item }) {
 			});
 		};
 	}, []);
-
-	useEffect(() => {
-		const nav = document.querySelector(".nav"); // Remove collapse from nav to hide it.
-		nav.classList.remove("collapse");
-		nav.classList.remove("collapse-sm");
-	}, [router.pathname]);
 
 	const filteredBlogs = blogs.filter((eachItem) => {
 		// Only get future blogs for sidebar.

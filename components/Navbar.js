@@ -1,4 +1,3 @@
-import React from "react";
 // import scrollToComponent from "react-scroll-to-component";
 import Link from "next/link";
 import { FaBars } from "react-icons/fa";

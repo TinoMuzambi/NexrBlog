@@ -5,10 +5,12 @@ import { FaUser, FaCalendar } from "react-icons/fa";
 import Moment from "react-moment";
 import Disqus from "../../../components/Disqus";
 import ReactHtmlParser from "react-html-parser";
+import { useRouter } from "next/router";
 import Meta from "../../../components/Meta";
 
 const blog = ({ blog, blogs, categories }) => {
-	const [name, setName] = useState(blog.url);
+	const [name] = useState(blog.url);
+	const router = useRouter();
 
 	const title = name; // Finding relevant blog.
 	const currBlog = blog;
