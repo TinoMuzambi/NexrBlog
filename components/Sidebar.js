@@ -1,6 +1,6 @@
 import Categories from "./Categories";
 import SideBlog from "./SideBlog";
-import { server } from "../../../config";
+import { server } from "../config";
 
 const Sidebar = ({ blogs, future, categories, side }) => {
 	const filteredBlogs = blogs // Getting list that doesn't include current blog nor future blogs for other blogs section.

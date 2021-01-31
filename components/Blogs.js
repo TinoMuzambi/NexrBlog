@@ -6,19 +6,24 @@ import Blog from "./Blog";
 
 const Blogs = ({ blogs, category, search, fromCategory, searchTerm }) => {
 	const [blogItems] = useState(blogs); // Set state to list of blogs.
-	const [displayBlogs, setDisplayBlogs] = useState([]); // Blogs currently being displayed.
+	let displayBlogs = []; // Blogs currently being displayed.
 	const router = useRouter();
 	const [queryText] = useState(searchTerm);
 
 	useEffect(() => {
 		if (router.pathname !== "/" || search) {
-			setDisplayBlogs(blogs); // Ensure blog content changes when url changes.
+			displayBlogs = blogs; // Ensure blog content changes when url changes.
 		}
 	}, [router.pathname, blogs, search]);
 
-	const handlePageChange = (displayBlogs) => {
+	useEffect(() => {
+		console.log(blogs);
+		displayBlogs = blogs;
+	}, []);
+
+	const handlePageChange = (newDisplayBlogs) => {
 		// Handing pagination page changes.
-		setDisplayBlogs(displayBlogs);
+		displayBlogs = newDisplayBlogs;
 	};
 
 	const customLabels = {
@@ -55,7 +60,7 @@ const Blogs = ({ blogs, category, search, fromCategory, searchTerm }) => {
 		);
 	});
 
-	fromCategory ? setDisplayBlogs(filteredBlogs) : setDisplayBlogs(homeBlogs);
+	displayBlogs = fromCategory ? filteredBlogs : homeBlogs;
 
 	return (
 		<div className="posts">
@@ -104,6 +109,7 @@ Blogs.defaultProps = {
 export const getStaticProps = async () => {
 	const res = await fetch(`${server}/api/blogs`);
 	const blogs = await res.json();
+	console.log(blogs);
 
 	return {
 		props: {
