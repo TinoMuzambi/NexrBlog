@@ -26,7 +26,6 @@ const Blogs = ({ blogs, category, search, blogsRef }) => {
 	const handlePageChange = (displayBlogs) => {
 		// Handing pagination page changes.
 		setDisplayBlogs(displayBlogs);
-		// document.querySelector(".blogs")?.scrollIntoView({ behavior: "smooth" });
 	};
 
 	const customLabels = {
@@ -91,7 +90,14 @@ const Blogs = ({ blogs, category, search, blogsRef }) => {
 					{/* Conditionally render element */}
 				</div>
 			))}
-			<div className="page-holder text-center">
+			<div
+				className="page-holder text-center"
+				onClick={() =>
+					document
+						.querySelector(".blogs")
+						?.scrollIntoView({ behavior: "smooth" })
+				}
+			>
 				{/* Pagination element */}
 				<JwPagination
 					items={blogItems}
