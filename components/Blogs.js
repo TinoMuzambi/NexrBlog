@@ -10,7 +10,7 @@ const Blogs = ({ category, search, fromCategory, searchTerm }) => {
 	const [blogItems] = useState(blogs); // Set state to list of blogs.
 	let displayBlogs = []; // Blogs currently being displayed.
 	const router = useRouter();
-	const [queryText] = useState(searchTerm);
+	const [queryText, setQueryText] = useState(searchTerm);
 
 	useEffect(() => {
 		if (router.pathname !== "/" || search) {
@@ -21,6 +21,10 @@ const Blogs = ({ category, search, fromCategory, searchTerm }) => {
 	useEffect(() => {
 		displayBlogs = blogs;
 	}, []);
+
+	useEffect(() => {
+		setQueryText(searchTerm);
+	}, [searchTerm]);
 
 	const handlePageChange = (newDisplayBlogs) => {
 		// Handing pagination page changes.
