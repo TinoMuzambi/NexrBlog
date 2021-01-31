@@ -3,16 +3,13 @@ import Categories from "./Categories";
 import SideBlog from "./SideBlog";
 import { GlobalContext } from "../context/GlobalState";
 
-const Sidebar = ({ future, side, category, title }) => {
+const Sidebar = ({ future, side, category, url }) => {
 	const { blogs } = useContext(GlobalContext);
 	const { categories } = useContext(GlobalContext);
 
 	const filteredBlogs = blogs // Getting list that doesn't include current blog nor future blogs for other blogs section.
 		.filter((eachItem) => {
-			return (
-				!eachItem.url.toLowerCase().includes(title.toLowerCase()) &&
-				!eachItem.future !== future
-			);
+			return !eachItem.url.includes(url) && eachItem.future === future;
 		})
 		.slice(0, 3);
 
@@ -20,13 +17,11 @@ const Sidebar = ({ future, side, category, title }) => {
 		.filter((eachItem) => {
 			return (
 				!eachItem.category.toLowerCase().includes(category.url) &&
-				!eachItem.future !== future
+				eachItem.future === future
 			);
 		})
 
 		.slice(0, 3);
-
-	console.log(sideBlogs);
 
 	return (
 		<aside className="sidebar">
@@ -48,6 +43,6 @@ Sidebar.defaultProps = {
 	future: false,
 	categories: [],
 	side: false,
-	title: "",
+	url: "",
 	category: "",
 };
