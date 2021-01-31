@@ -1,4 +1,3 @@
-// import scrollToComponent from "react-scroll-to-component";
 import Link from "next/link";
 import { FaBars } from "react-icons/fa";
 import SocialIcons from "./SocialIcons";
@@ -41,7 +40,9 @@ const Navbar = ({ about, featured, blogsRef, footer }) => {
 								// 	align: "top",
 								// 	duration: 1500,
 								// })
-								about.current.scrollIntoView({ behavior: "smooth" })
+								document
+									.querySelector(".about")
+									.scrollIntoView({ behavior: "smooth" })
 							}
 						>
 							Home

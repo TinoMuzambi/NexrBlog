@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { server } from "../config";
 import Blogs from "./blogs";
 import Sidebar from "../components/Sidebar";
@@ -10,11 +10,6 @@ import AOS from "aos";
 export default function Home({ blogs, categories, item }) {
 	const [queryText, setQueryText] = useState("");
 	const [searching, setSearching] = useState(false);
-
-	const about = useRef(null);
-	const featured = useRef(null);
-	const blogsRef = useRef(null);
-	const footer = useRef(null);
 
 	const searchBlogs = (query) => {
 		// Search by updating queryText state.
@@ -71,10 +66,10 @@ export default function Home({ blogs, categories, item }) {
 
 	return (
 		<>
-			<section className="about" ref={about}>
+			<section className="about">
 				<About /> {/* About section */}
 			</section>
-			<section className="featured" ref={featured}>
+			<section className="featured">
 				<Featured item={item} /> {/* Featured section */}
 			</section>
 			<div className="search-wrapper">
@@ -82,7 +77,7 @@ export default function Home({ blogs, categories, item }) {
 			</div>
 			<section className="container" id="blogs">
 				<div className="site-content">
-					<section className="blogs" ref={blogsRef}>
+					<section className="blogs">
 						<Blogs
 							blogs={homeBlogs}
 							category={false}
