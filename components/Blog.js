@@ -5,31 +5,25 @@ import Moment from "react-moment";
 import { GlobalContext } from "../context/GlobalState";
 import ReactHtmlParser from "react-html-parser";
 
-const Blog = ({ blog, key, side, home }) => {
+const Blog = ({ blog, key, page }) => {
 	const { blogs } = useContext(GlobalContext);
 
 	return (
 		<div className="post-content" data-aos="zoom-in" data-aos-delay="200">
 			<div className="post-image">
 				<div>
-					{!side ? (
+					{page === "home" || page === "blogs" || page === "categories" ? (
 						<Link href={`/blogs/${blog.url}`}>
 							<a>
 								<img src={blog.image} className="img" alt={blog.title} />
 							</a>
 						</Link>
-					) : home ? (
-						<img src={blog.image} className="img" alt={blog.title} />
 					) : (
-						<Link href={`/blogs/${blog.url}`}>
-							<a>
-								<img src={blog.image} className="img" alt={blog.title} />
-							</a>
-						</Link>
+						<img src={blog.image} className="img" alt={blog.title} />
 					)}
 				</div>
 				<div className="post-info flex-row">
-					{!side && (
+					{page === "home" && (
 						<span>
 							<i className="fas fa-user text-gray">
 								<FaUser />
@@ -38,7 +32,7 @@ const Blog = ({ blog, key, side, home }) => {
 						</span>
 					)}
 					<span>
-						{!side ? (
+						{page === "home" || page === "blogs" || page === "categories" ? (
 							<>
 								<i className="fas fa-calendar-alt text-gray">
 									<FaCalendar />
@@ -46,36 +40,26 @@ const Blog = ({ blog, key, side, home }) => {
 								&nbsp;&nbsp;
 								<Moment format="MMMM DD, YYYY">{blog.date}</Moment>
 							</>
-						) : home ? (
+						) : (
 							<>
 								<i className="fas fa-calendar-alt text-gray">
 									<FaCalendar />
 									&nbsp;&nbsp;TBA
 								</i>
 							</>
-						) : (
-							<>
-								<i className="fas fa-calendar-alt text-gray">
-									<FaCalendar />
-								</i>
-								&nbsp;&nbsp;
-								<Moment format="MMMM DD, YYYY">{blog.date}</Moment>
-							</>
 						)}
 					</span>
 				</div>
 			</div>
 			<div className="post-title">
-				{side ? (
-					home ? (
-						<a>{blog.title}</a>
-					) : (
-						<Link href={`/blogs/${blog.url}`}>
-							<a>
-								<a>{blog.title}</a>
-							</a>
-						</Link>
-					)
+				{page === "future" ? (
+					<a>{blog.title}</a>
+				) : page !== "home" ? (
+					<Link href={`/blogs/${blog.url}`}>
+						<a>
+							<a>{blog.title}</a>
+						</a>
+					</Link>
 				) : (
 					<Link href={`/blogs/${blog.url}`}>
 						<a>
@@ -94,7 +78,7 @@ const Blog = ({ blog, key, side, home }) => {
 					</Link>
 				)}
 			</div>
-			{!side && (
+			{page === "home" && (
 				<hr className={`${key === blogs.length - 1 ? "is-hidden" : ""}`}></hr>
 			)}
 			{/* Conditionally render element */}
@@ -106,6 +90,6 @@ export default Blog;
 
 Blog.defaultProps = {
 	blog: {},
-	side: false,
+	page: "home",
 	key: 0,
 };

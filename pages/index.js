@@ -66,7 +66,7 @@ export default function Home({ item, blogs, categories }) {
 						<Blogs searchTerm={queryText} category={false} search={searching} />
 					</section>
 
-					<Sidebar future={true} side={true} />
+					<Sidebar future={true} />
 					{/* Sidebar section - pass list of blogs, true for future to signal
 											showing future blogs.*/}
 				</div>

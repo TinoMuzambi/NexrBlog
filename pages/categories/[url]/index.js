@@ -18,12 +18,7 @@ const category = ({ category }) => {
 
 						<Blogs category={category} search={false} fromCategory={true} />
 					</div>
-					<Sidebar
-						side={true}
-						future={false}
-						category={category}
-						home={false}
-					/>
+					<Sidebar future={false} category={category} page="categories" />
 					{/* Sidebar section populated with links to other blogs. */}
 				</div>
 			</div>

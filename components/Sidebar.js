@@ -3,7 +3,7 @@ import Categories from "./Categories";
 import SideBlog from "./SideBlog";
 import { GlobalContext } from "../context/GlobalState";
 
-const Sidebar = ({ future, side, category, url, home }) => {
+const Sidebar = ({ future, category, url, page }) => {
 	const { blogs } = useContext(GlobalContext);
 	const { categories } = useContext(GlobalContext);
 
@@ -30,10 +30,9 @@ const Sidebar = ({ future, side, category, url, home }) => {
 			</div>
 			<div className="other-posts">
 				<SideBlog
-					side={side}
-					blogs={side ? sideBlogs : filteredBlogs}
+					blogs={category ? sideBlogs : filteredBlogs}
 					future={future}
-					home={home}
+					page={page}
 				/>{" "}
 				{/* Sidebar section. */}
 			</div>
@@ -47,8 +46,7 @@ Sidebar.defaultProps = {
 	blogs: [],
 	future: false,
 	categories: [],
-	side: false,
 	url: "",
-	category: "",
-	home: true,
+	category: {},
+	page: "future",
 };

@@ -75,7 +75,7 @@ const Blogs = ({ category, search, fromCategory, searchTerm }) => {
 			{displayBlogs ? (
 				<>
 					{displayBlogs.map((blog, key) => (
-						<Blog blog={blog} key={key} />
+						<Blog blog={blog} key={key} page="home" />
 					))}
 					<div
 						className="page-holder text-center"

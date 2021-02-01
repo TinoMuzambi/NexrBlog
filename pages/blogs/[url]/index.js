@@ -59,10 +59,10 @@ const blog = ({ blog }) => {
 						{/* <!--------------X------------------  Disqus Comments Plugin  ------------------------X------------- --> */}
 					</div>
 					<Sidebar
-						side={false}
 						future={blog.future}
 						url={blog.url}
 						category={blog.category}
+						page="blogs"
 					/>
 					{/* Sidebar section populated with links to other blogs. */}
 				</div>
