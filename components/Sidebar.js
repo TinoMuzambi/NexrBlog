@@ -33,7 +33,7 @@ const Sidebar = ({ future, category, url, page }) => {
 					blogs={category ? sideBlogs : filteredBlogs}
 					future={future}
 					page={page}
-				/>{" "}
+				/>
 				{/* Sidebar section. */}
 			</div>
 		</aside>

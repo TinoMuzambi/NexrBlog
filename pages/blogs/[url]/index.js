@@ -75,8 +75,6 @@ export default blog;
 
 blog.defaultProps = {
 	blog: {},
-	blogs: [],
-	categories: [],
 };
 
 export const getStaticProps = async (context) => {
