@@ -5,7 +5,7 @@ import Moment from "react-moment";
 import { GlobalContext } from "../context/GlobalState";
 import ReactHtmlParser from "react-html-parser";
 
-const Blog = ({ blog, key, side }) => {
+const Blog = ({ blog, key, side, home }) => {
 	const { blogs } = useContext(GlobalContext);
 
 	return (
@@ -15,11 +15,17 @@ const Blog = ({ blog, key, side }) => {
 					{!side ? (
 						<Link href={`/blogs/${blog.url}`}>
 							<a>
-								<img src={blog.image} className="img" alt="shower" />
+								<img src={blog.image} className="img" alt={blog.title} />
 							</a>
 						</Link>
+					) : home ? (
+						<img src={blog.image} className="img" alt={blog.title} />
 					) : (
-						<img src={blog.image} className="img" alt="shower" />
+						<Link href={`/blogs/${blog.url}`}>
+							<a>
+								<img src={blog.image} className="img" alt={blog.title} />
+							</a>
+						</Link>
 					)}
 				</div>
 				<div className="post-info flex-row">
@@ -40,12 +46,20 @@ const Blog = ({ blog, key, side }) => {
 								&nbsp;&nbsp;
 								<Moment format="MMMM DD, YYYY">{blog.date}</Moment>
 							</>
-						) : (
+						) : home ? (
 							<>
 								<i className="fas fa-calendar-alt text-gray">
 									<FaCalendar />
 									&nbsp;&nbsp;TBA
 								</i>
+							</>
+						) : (
+							<>
+								<i className="fas fa-calendar-alt text-gray">
+									<FaCalendar />
+								</i>
+								&nbsp;&nbsp;
+								<Moment format="MMMM DD, YYYY">{blog.date}</Moment>
 							</>
 						)}
 					</span>
@@ -53,7 +67,15 @@ const Blog = ({ blog, key, side }) => {
 			</div>
 			<div className="post-title">
 				{side ? (
-					<a>{blog.title}</a>
+					home ? (
+						<a>{blog.title}</a>
+					) : (
+						<Link href={`/blogs/${blog.url}`}>
+							<a>
+								<a>{blog.title}</a>
+							</a>
+						</Link>
+					)
 				) : (
 					<Link href={`/blogs/${blog.url}`}>
 						<a>
