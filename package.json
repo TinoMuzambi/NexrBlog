@@ -22,6 +22,7 @@
     "react-moment": "^1.1.1",
     "react-player": "^2.9.0",
     "sass": "^1.32.7",
+    "slugify": "^1.4.6",
     "storyblok-js-client": "^3.3.1"
   }
 }

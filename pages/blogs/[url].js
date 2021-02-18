@@ -6,6 +6,8 @@ import { titleCase } from "../../utils/helpers";
 const Blog = ({ blog }) => {
 	const router = useRouter();
 
+	const query = router.asPath.substring(7).split("_").join("-");
+	console.log(query);
 	if (router.isFallback) {
 		return <h1>Loading...</h1>;
 	}
@@ -23,9 +25,9 @@ const Storyblok = new StoryblokClient({
 		type: "memory",
 	},
 });
-const getBlog = async () => {
+const getBlog = async (query) => {
 	let blog = {};
-	await Storyblok.get("cdn/stories/blogs/phone-or-laptop", {})
+	await Storyblok.get(`cdn/stories/blogs/${query}`, {})
 		.then((response) => {
 			const strictlyBlog = response.data.story.content;
 			const prettyBlogs = {
@@ -54,7 +56,8 @@ const getBlog = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-	const blog = await getBlog();
+	const query = params.url.split("_").join("-");
+	const blog = await getBlog(query);
 	return {
 		props: { blog },
 	};
