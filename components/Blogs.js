@@ -19,6 +19,7 @@ const Blogs = ({ blogs, category, blogsRef }) => {
 		setDisplayBlogs(blogs);
 	}, [blogs]);
 
+	// TODO Fix pagination.
 	const handlePageChange = (displayBlogs) => {
 		// Handing pagination page changes.
 		setDisplayBlogs(displayBlogs);

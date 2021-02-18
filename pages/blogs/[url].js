@@ -6,6 +6,7 @@ import ReactHtmlParser from "react-html-parser";
 
 import { titleCase } from "../../utils/helpers";
 import Preload from "../../components/Preload";
+import Disqus from "../../components/Disqus";
 
 const Blog = ({ blog }) => {
 	const router = useRouter();
@@ -39,6 +40,17 @@ const Blog = ({ blog }) => {
 						<div className="blog-html">{ReactHtmlParser(blog.content)}</div>
 						{/* Parsing HTML blog content */}
 					</div>
+
+					{/* <!---------------------------------  Disqus Comments Plugin  -------------------------------------- --> */}
+
+					<Disqus
+						title={blog.title}
+						url={blog.disqusURL}
+						identifier={blog.disqusIdentifier}
+						src={blog.disqusSrc}
+					/>
+
+					{/* <!--------------X------------------  Disqus Comments Plugin  ------------------------X------------- --> */}
 				</div>
 			</div>
 		</div>
