@@ -5,6 +5,9 @@ import AOS from "aos";
 import About from "../components/About";
 import Featured from "../components/Featured";
 import Search from "../components/Search";
+import Blogs from "../components/Blogs";
+import Sidebar from "../components/Sidebar";
+
 import { titleCase } from "../utils/helpers";
 
 export default function Home({ blogs, categories, featuredItem }) {
@@ -21,6 +24,31 @@ export default function Home({ blogs, categories, featuredItem }) {
 		query ? setSearching(true) : setSearching(false);
 	};
 
+	const filteredBlogs = blogs.filter((eachItem) => {
+		// Only get future blogs for sidebar.
+		return eachItem["future"] === true;
+	});
+
+	let homeBlogs = blogs.filter((eachItem) => {
+		// Only get published blogs for main content.
+		return eachItem["future"] === false;
+	});
+
+	homeBlogs = homeBlogs.filter((eachItem) => {
+		// Only display blogs matching search.
+		return (
+			eachItem["title"] // Search in title.
+				.toLowerCase()
+				.includes(queryText.toLowerCase()) ||
+			eachItem["category"] // Search in category.
+				.toLowerCase()
+				.includes(queryText.toLowerCase()) ||
+			eachItem["content"] // Search in content.
+				.toLowerCase()
+				.includes(queryText.toLowerCase())
+		);
+	});
+
 	return (
 		<>
 			<section className="about">
@@ -32,6 +60,17 @@ export default function Home({ blogs, categories, featuredItem }) {
 			<div className="search-wrapper">
 				<Search searchBlogs={searchBlogs} /> {/* Search box */}
 			</div>
+			<section className="container" id="blogs">
+				<div className="site-content">
+					<section className="blogs">
+						<Blogs blogs={homeBlogs} category={false} />
+					</section>
+
+					<Sidebar blogs={blogs} categories={categories} future={true} />
+					{/* Sidebar section - pass list of blogs, true for future to signal
+											showing future blogs.*/}
+				</div>
+			</section>
 		</>
 	);
 }
