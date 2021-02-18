@@ -1,92 +1,99 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { withRouter } from "react-router";
+import Link from "next/link";
 import { FaBars } from "react-icons/fa";
 import SocialIcons from "./SocialIcons";
+import { useRouter } from "next/router";
 
-const Navbar = ({ about, featured, blogsRef, footer }) => {
-	const location = useLocation();
+const Navbar = () => {
+	const router = useRouter();
 
 	const toggleCollapse = () => {
 		// Toggle collapse class on navbar.
 		const nav = document.querySelector(".nav");
-		location.pathname === "/"
+		router.pathname === "/"
 			? nav.classList.toggle("collapse")
 			: nav.classList.toggle("collapse-sm");
 	};
 
 	return (
-		<>
-			<nav className="nav" id="nav">
-				<div className="nav-menu">
-					<div className="nav-brand">
-						<Link to="/" className="text-gray">
-							Blog.TinoMuzambi
-						</Link>
+		<nav className="nav" id="nav">
+			<div className="nav-menu">
+				<div className="nav-brand">
+					<Link href="/" className="text-gray">
+						<a>Blog.TinoMuzambi</a>
+					</Link>
+				</div>
+				<div className="toggle-collapse">
+					<div className="toggle-icons">
+						<span className="fas fa-bars" onClick={toggleCollapse}>
+							<FaBars />
+						</span>
 					</div>
-					<div className="toggle-collapse">
-						<div className="toggle-icons">
-							<span className="fas fa-bars" onClick={toggleCollapse}>
-								<FaBars />
-							</span>
-						</div>
-					</div>
-					<ul className="nav-items">
-						{/* Either scroll or go home depending on location. */}
-						{location.pathname === "/" ? (
-							<li
-								className="nav-link"
-								onClick={() =>
-									about.current.scrollIntoView({ behavior: "smooth" })
-								}
-							>
-								Home
-							</li>
-						) : (
-							<Link to="/">
-								<li className="nav-link">Home</li>
-							</Link>
-						)}
-						{/* Conditionally render element based on location */}
-						{location.pathname === "/" ? (
-							<li
-								className="nav-link"
-								onClick={() =>
-									featured.current.scrollIntoView({ behavior: "smooth" })
-								}
-							>
-								Featured
-							</li>
-						) : (
-							""
-						)}
-						{/* Conditionally render element based on location */}
-						{location.pathname === "/" ? (
-							<li
-								className="nav-link"
-								onClick={() =>
-									blogsRef.current.scrollIntoView({ behavior: "smooth" })
-								}
-							>
-								Blogs
-							</li>
-						) : (
-							""
-						)}
+				</div>
+				<ul className="nav-items">
+					{/* Either scroll or go home depending on location. */}
+					{router.pathname === "/" ? (
 						<li
 							className="nav-link"
 							onClick={() =>
-								footer.current.scrollIntoView({ behavior: "smooth" })
+								document
+									.querySelector(".about")
+									.scrollIntoView({ behavior: "smooth" })
 							}
 						>
-							Socials
+							Home
 						</li>
-					</ul>
-					<SocialIcons /> {/* Social Icons section */}
-				</div>
-			</nav>
-		</>
+					) : (
+						<Link href="/">
+							<a>
+								<li className="nav-link">Home</li>
+							</a>
+						</Link>
+					)}
+					{/* Conditionally render element based on location */}
+					{router.pathname === "/" ? (
+						<li
+							className="nav-link"
+							onClick={() =>
+								document
+									.querySelector(".featured")
+									.scrollIntoView({ behavior: "smooth" })
+							}
+						>
+							Featured
+						</li>
+					) : (
+						""
+					)}
+					{/* Conditionally render element based on location */}
+					{router.pathname === "/" ? (
+						<li
+							className="nav-link"
+							onClick={() =>
+								document
+									.querySelector(".blogs")
+									.scrollIntoView({ behavior: "smooth" })
+							}
+						>
+							Blogs
+						</li>
+					) : (
+						""
+					)}
+					<li
+						className="nav-link"
+						onClick={() =>
+							document
+								.querySelector("footer")
+								.scrollIntoView({ behavior: "smooth" })
+						}
+					>
+						Socials
+					</li>
+				</ul>
+				<SocialIcons /> {/* Social Icons section */}
+			</div>
+		</nav>
 	);
 };
 
-export default withRouter(Navbar);
+export default Navbar;

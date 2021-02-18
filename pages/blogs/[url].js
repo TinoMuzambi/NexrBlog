@@ -2,18 +2,44 @@ import StoryblokClient from "storyblok-js-client";
 import { useRouter } from "next/router";
 
 import { titleCase } from "../../utils/helpers";
+import { FaUser, FaCalendar } from "react-icons/fa";
+import Moment from "react-moment";
+import ReactHtmlParser from "react-html-parser";
 
 const Blog = ({ blog }) => {
 	const router = useRouter();
 
-	const query = router.asPath.substring(7).split("_").join("-");
-	console.log(query);
 	if (router.isFallback) {
 		return <h1>Loading...</h1>;
 	}
 	return (
-		<div>
-			<h1>{blog.title}</h1>
+		<div className="container" id="blogs">
+			<div className="site-content">
+				<div className="posts">
+					<div className="post-content" data-aos="zoom-in" data-aos-delay="200">
+						<div className="post-title">
+							<h1>{blog.title}</h1>
+							<h3>
+								<i className="fas fa-user text-gray">
+									<FaUser />
+								</i>
+								&nbsp;Me&nbsp;&nbsp;
+								<i className="fas fa-calendar-alt text-gray">
+									<FaCalendar />
+								</i>
+								&nbsp;<Moment format="MMM DD, YYYY">{blog.date}</Moment>
+							</h3>
+							<div className="post-image">
+								<div>
+									<img src={blog.image} className="img" alt={blog.alt} />
+								</div>
+							</div>
+						</div>
+						<div className="blog-html">{ReactHtmlParser(blog.content)}</div>
+						{/* Parsing HTML blog content */}
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };
@@ -64,8 +90,6 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = () => {
-	// paths -> slugs which are allowed
-	// fallback ->
 	return {
 		paths: [],
 		fallback: true,
