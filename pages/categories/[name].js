@@ -15,11 +15,11 @@ const Category = ({ category }) => {
 
 	return (
 		<>
-			{/* <Meta
+			<Meta
 				title={`${category.name} | Blog.TinoMuzambi`}
 				description={category.name}
 				url={`https://blog.tinomuzambi.com/${category.url}`}
-			/> */}
+			/>
 			<div className="container">
 				<div className="site-content">
 					<div className="posts">
