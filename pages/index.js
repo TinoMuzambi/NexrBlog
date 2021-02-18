@@ -1,95 +1,65 @@
-import { useState, useEffect, useContext } from "react";
-import { server } from "../config";
-import Blogs from "../components/Blogs";
-import Sidebar from "../components/Sidebar";
-import About from "../components/About";
-import Featured from "../components/Featured";
-import Search from "../components/Search";
-import AOS from "aos";
-import { GlobalContext } from "../context/GlobalState";
+import Head from 'next/head'
+import styles from '../styles/Home.module.css'
 
-export default function Home({ item, blogs, categories }) {
-	const [queryText, setQueryText] = useState("");
-	const [searching, setSearching] = useState(false);
-	const { updateBlogs, updateCategories, updateItem } = useContext(
-		GlobalContext
-	);
+export default function Home() {
+  return (
+    <div className={styles.container}>
+      <Head>
+        <title>Create Next App</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-	const searchBlogs = (query) => {
-		// Search by updating queryText state.
-		setQueryText(query);
-		query ? setSearching(true) : setSearching(false);
-	};
+      <main className={styles.main}>
+        <h1 className={styles.title}>
+          Welcome to <a href="https://nextjs.org">Next.js!</a>
+        </h1>
 
-	useEffect(() => {
-		updateBlogs(blogs);
-		updateCategories(categories);
-		updateItem(item);
-	}, []);
+        <p className={styles.description}>
+          Get started by editing{' '}
+          <code className={styles.code}>pages/index.js</code>
+        </p>
 
-	useEffect(() => {
-		AOS.init(); // Initialise animate on scroll library.
+        <div className={styles.grid}>
+          <a href="https://nextjs.org/docs" className={styles.card}>
+            <h3>Documentation &rarr;</h3>
+            <p>Find in-depth information about Next.js features and API.</p>
+          </a>
 
-		const preload = document.querySelector(".preload"); // Set timeout for showing preloader.
-		const timeoutID = setTimeout(function () {
-			preload.classList.add("finish");
-			clearTimeout(timeoutID);
-		}, 7000);
+          <a href="https://nextjs.org/learn" className={styles.card}>
+            <h3>Learn &rarr;</h3>
+            <p>Learn about Next.js in an interactive course with quizzes!</p>
+          </a>
 
-		window.addEventListener("load", () => {
-			// Get rid of preloader once everything's loaded
-			preload.classList.add("finish");
-		});
+          <a
+            href="https://github.com/vercel/next.js/tree/master/examples"
+            className={styles.card}
+          >
+            <h3>Examples &rarr;</h3>
+            <p>Discover and deploy boilerplate example Next.js projects.</p>
+          </a>
 
-		return () => {
-			window.removeEventListener("load", () => {
-				// Get rid of preloader once everything's loaded
-				preload.classList.add("finish");
-			});
-		};
-	}, []);
+          <a
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            className={styles.card}
+          >
+            <h3>Deploy &rarr;</h3>
+            <p>
+              Instantly deploy your Next.js site to a public URL with Vercel.
+            </p>
+          </a>
+        </div>
+      </main>
 
-	return (
-		<>
-			<section className="about">
-				<About /> {/* About section */}
-			</section>
-			<section className="featured">
-				<Featured /> {/* Featured section */}
-			</section>
-			<div className="search-wrapper">
-				<Search searchBlogs={searchBlogs} /> {/* Search box */}
-			</div>
-			<section className="container" id="blogs">
-				<div className="site-content">
-					<section className="blogs">
-						<Blogs searchTerm={queryText} category={false} search={searching} />
-					</section>
-
-					<Sidebar future={true} />
-					{/* Sidebar section - pass list of blogs, true for future to signal
-											showing future blogs.*/}
-				</div>
-			</section>
-		</>
-	);
+      <footer className={styles.footer}>
+        <a
+          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by{' '}
+          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+        </a>
+      </footer>
+    </div>
+  )
 }
-
-export const getStaticProps = async () => {
-	const res = await fetch(`${server}/api/featured-item`);
-	const item = await res.json();
-
-	const res2 = await fetch(`${server}/api/blogs`);
-	const blogs = await res2.json();
-
-	const res3 = await fetch(`${server}/api/categories`);
-	const categories = await res3.json();
-
-	return {
-		props: {
-			item,
-			blogs,
-			categories,
-		},
-	};
-};

@@ -1,22 +1,7 @@
-import "../styles/css/App.min.css";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import Wrapper from "../components/Wrapper";
+import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
-	const router = useRouter();
-
-	useEffect(() => {
-		const nav = document.querySelector(".nav"); // Remove collapse from nav to hide it.
-		nav.classList.remove("collapse");
-		nav.classList.remove("collapse-sm");
-	}, [router.pathname]);
-
-	return (
-		<Wrapper>
-			<Component {...pageProps} />
-		</Wrapper>
-	);
+  return <Component {...pageProps} />
 }
 
-export default MyApp;
+export default MyApp
