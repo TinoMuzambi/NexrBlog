@@ -1,6 +1,6 @@
 import React from "react";
 import { FaCalendar } from "react-icons/fa";
-import { Link } from "next/link";
+import Link from "next/link";
 
 import Moment from "react-moment";
 

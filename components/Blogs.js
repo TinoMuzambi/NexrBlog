@@ -6,7 +6,7 @@ import {
 	FaChevronLeft,
 	FaChevronRight,
 } from "react-icons/fa";
-import { Link } from "next/link";
+import Link from "next/link";
 import Moment from "react-moment";
 import ReactHtmlParser from "react-html-parser";
 import JwPagination from "jw-react-pagination";
