@@ -3,10 +3,10 @@ import Meta from "../components/Meta";
 
 const Custom404 = () => (
 	<>
-		{/* <Meta
+		<Meta
 			title="Not Found | Blog.TinoMuzambi"
 			description="404 - Page not found"
-		/> */}
+		/>
 		<div className="not-found-page">
 			<h1 className="title">Looks like you got lost.</h1>
 			<Link href="/">
