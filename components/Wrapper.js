@@ -5,7 +5,7 @@ import Meta from "./Meta";
 const Wrapper = ({ children }) => {
 	return (
 		<>
-			{/* <Meta /> */}
+			<Meta />
 			<Navbar />
 			{children}
 			<Footer />

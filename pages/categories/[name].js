@@ -2,7 +2,7 @@ import StoryblokClient from "storyblok-js-client";
 import { useRouter } from "next/router";
 
 import Blogs from "../../components/Blogs";
-// import Meta from "../../components/Meta";
+import Meta from "../../components/Meta";
 // import Sidebar from "../../components/Sidebar";
 import Preload from "../../components/Preload";
 
@@ -15,11 +15,11 @@ const Category = ({ category }) => {
 
 	return (
 		<>
-			{/* <Meta
+			<Meta
 				title={`${category.name} | Blog.TinoMuzambi`}
 				description={category.name}
 				url={`https://blog.tinomuzambi.com/${category.url}`}
-			/> */}
+			/>
 			<div className="container">
 				<div className="site-content">
 					<div className="posts">
