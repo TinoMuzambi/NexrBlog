@@ -29,7 +29,7 @@ const Meta = ({ title, keywords, description, image, url }) => {
 			<meta charSet="utf-8" />
 			<link rel="icon" href="/favicon.ico" />
 			<meta name="Blog.TinoMuzambi" content="Welcome to my blog" />
-			<link rel="apple-touch-icon" href="/logo192.png" />
+			<link rel="apple-touch-icon" href="/assets/logo192.png" />
 			<link rel="manifest" href="/manifest.json" />
 			<title>{title}</title>
 

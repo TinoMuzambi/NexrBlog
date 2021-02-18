@@ -1,16 +1,17 @@
 import StoryblokClient from "storyblok-js-client";
 import { useRouter } from "next/router";
-
-import { titleCase } from "../../utils/helpers";
 import { FaUser, FaCalendar } from "react-icons/fa";
 import Moment from "react-moment";
 import ReactHtmlParser from "react-html-parser";
+
+import { titleCase } from "../../utils/helpers";
+import Preload from "../../components/Preload";
 
 const Blog = ({ blog }) => {
 	const router = useRouter();
 
 	if (router.isFallback) {
-		return <h1>Loading...</h1>;
+		return <Preload />;
 	}
 	return (
 		<div className="container" id="blogs">
