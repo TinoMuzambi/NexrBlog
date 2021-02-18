@@ -14,6 +14,7 @@ const Blog = ({ blog }) => {
 	if (router.isFallback) {
 		return <Preload />;
 	}
+
 	return (
 		<div className="container" id="blogs">
 			<div className="site-content">
