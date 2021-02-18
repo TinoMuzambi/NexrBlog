@@ -8,7 +8,8 @@ const Sidebar = ({ blogs, future, categories }) => (
 				<Categories categories={categories} /> {/* Categories section. */}
 			</div>
 			<div className="other-posts">
-				<SideBlog blogs={blogs} future={future} /> {/* Sidebar section. */}
+				<SideBlog blogs={blogs.reverse()} future={future} />
+				{/* Sidebar section. */}
 			</div>
 		</aside>
 	</>

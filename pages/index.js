@@ -66,7 +66,11 @@ export default function Home({ blogs, categories, featuredItem }) {
 						<Blogs blogs={homeBlogs} category={false} />
 					</section>
 
-					<Sidebar blogs={blogs} categories={categories} future={true} />
+					<Sidebar
+						blogs={filteredBlogs}
+						categories={categories}
+						future={true}
+					/>
 					{/* Sidebar section - pass list of blogs, true for future to signal
 											showing future blogs.*/}
 				</div>
