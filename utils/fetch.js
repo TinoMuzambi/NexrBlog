@@ -118,3 +118,34 @@ export const getCategory = async (query) => {
 
 	return category;
 };
+
+export const getBlog = async (query) => {
+	let blog = {};
+
+	await Storyblok.get(`cdn/stories/blogs/${query}`, {})
+		.then((response) => {
+			const strictlyBlog = response.data.story.content;
+			const prettyBlogs = {
+				category: titleCase(strictlyBlog.category.cached_url.substring(11)),
+				content: strictlyBlog.content,
+				date: strictlyBlog.date,
+				disqusIdentifier: strictlyBlog.disqusIdentifier,
+				disqusShortname: strictlyBlog.disqusShortname,
+				disqusSrc: strictlyBlog.disqusSrc,
+				disqusURL: strictlyBlog.disqusURL,
+				future: strictlyBlog.future,
+				image: strictlyBlog.media.filename,
+				alt: strictlyBlog.media.alt,
+				readTime: strictlyBlog.readTime,
+				title: strictlyBlog.title,
+				url: strictlyBlog.url,
+				id: strictlyBlog._uid,
+			};
+			blog = prettyBlogs;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+
+	return blog;
+};

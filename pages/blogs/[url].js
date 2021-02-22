@@ -1,4 +1,3 @@
-import StoryblokClient from "storyblok-js-client";
 import { useRouter } from "next/router";
 import { FaUser, FaCalendar } from "react-icons/fa";
 import Moment from "react-moment";
@@ -7,8 +6,10 @@ import ReactHtmlParser from "react-html-parser";
 import Preload from "../../components/Preload";
 import Disqus from "../../components/Disqus";
 import Meta from "../../components/Meta";
+import Sidebar from "../../components/Sidebar";
+import { getBlog, getBlogs, getCategories } from "../../utils/fetch";
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, categories, blogs }) => {
 	const router = useRouter();
 
 	if (router.isFallback) {
@@ -17,14 +18,14 @@ const Blog = ({ blog }) => {
 
 	return (
 		<>
-			<Meta
+			{/* <Meta
 				title={`${blog.title} | Blog.TinoMuzambi`}
 				description={ReactHtmlParser(
 					blog.content.slice(0, blog.content.indexOf("<br>")) + "</p>"
 				)}
 				image={blog.image}
 				url={`https://blog.tinomuzambi.com/${blog.url}`}
-			/>
+			/> */}
 			<div className="container" id="blogs">
 				<div className="site-content">
 					<div className="posts">
@@ -66,6 +67,17 @@ const Blog = ({ blog }) => {
 
 						{/* <!--------------X------------------  Disqus Comments Plugin  ------------------------X------------- --> */}
 					</div>
+					<Sidebar
+						categories={categories}
+						blogs={blogs
+							.filter(
+								(currBlog) =>
+									currBlog.title !== blog.title && currBlog.future === false
+							)
+							.slice(0, 3)}
+						future={blog.future}
+					/>
+					{/* Sidebar section populated with links to other blogs. */}
 				</div>
 			</div>
 		</>
@@ -75,8 +87,15 @@ const Blog = ({ blog }) => {
 export const getStaticProps = async ({ params }) => {
 	const query = params.url.split("_").join("-");
 	const blog = await getBlog(query);
+	const blogs = await getBlogs();
+	const categories = await getCategories();
+
 	return {
-		props: { blog },
+		props: {
+			blog,
+			blogs,
+			categories,
+		},
 	};
 };
 

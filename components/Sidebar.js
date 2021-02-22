@@ -2,9 +2,14 @@ import Categories from "../components/Categories";
 import SideBlog from "./SideBlog";
 
 const Sidebar = ({ category, blogs, future, categories }) => {
-	const filteredBlogs = blogs
-		.filter((blog) => blog.category !== category)
-		.slice(0, 3);
+	let filteredBlogs = blogs;
+
+	if (category) {
+		filteredBlogs = blogs
+			.filter((blog) => blog.category !== category)
+			.slice(0, 3);
+	}
+
 	return (
 		<>
 			<aside className="sidebar">
