@@ -40,6 +40,17 @@ const Meta = ({ title, keywords, description, image, url }) => {
 				integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
 				crossOrigin="anonymous"
 			/>
+
+			<link rel="preconnect" href="https://api.storyblok.com" />
+			<link rel="preconnect" href="https://a.storyblok.com" />
+			<link rel="preconnect" href="https://www.google-analytics.com" />
+
+			<link
+				type="application/opensearchdescription+xml"
+				rel="search"
+				href="https://blog.tinomuzambi.com/opensearch.xml"
+				title="Blog.TinoMuzambi"
+			/>
 		</Head>
 	);
 };
