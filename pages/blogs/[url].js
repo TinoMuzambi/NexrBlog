@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { FaUser, FaCalendar } from "react-icons/fa";
 import Moment from "react-moment";
@@ -11,6 +12,26 @@ import { getBlog, getBlogs, getCategories } from "../../utils/fetch";
 
 const Blog = ({ blog, categories, blogs }) => {
 	const router = useRouter();
+
+	useEffect(() => {
+		const preload = document.querySelector(".preload"); // Set timeout for showing preloader.
+		const timeoutID = setTimeout(function () {
+			preload.classList.add("finish");
+			clearTimeout(timeoutID);
+		}, 7000);
+
+		window.addEventListener("load", () => {
+			// Get rid of preloader once everything's loaded
+			preload.classList.add("finish");
+		});
+
+		return () => {
+			window.removeEventListener("load", () => {
+				// Get rid of preloader once everything's loaded
+				preload.classList.add("finish");
+			});
+		};
+	}, []);
 
 	if (router.isFallback) {
 		return <Preload />;
