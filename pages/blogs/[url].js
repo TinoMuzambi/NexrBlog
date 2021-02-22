@@ -18,14 +18,14 @@ const Blog = ({ blog, categories, blogs }) => {
 
 	return (
 		<>
-			{/* <Meta
+			<Meta
 				title={`${blog.title} | Blog.TinoMuzambi`}
 				description={ReactHtmlParser(
 					blog.content.slice(0, blog.content.indexOf("<br>")) + "</p>"
 				)}
 				image={blog.image}
 				url={`https://blog.tinomuzambi.com/${blog.url}`}
-			/> */}
+			/>
 			<div className="container" id="blogs">
 				<div className="site-content">
 					<div className="posts">
