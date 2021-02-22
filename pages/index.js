@@ -89,7 +89,8 @@ function Home({ blogs, categories, featuredItem, router }) {
 				<Featured item={featuredItem} /> {/* Featured section */}
 			</section>
 			<div className="search-wrapper">
-				<Search searchBlogs={searchBlogs} /> {/* Search box */}
+				<Search query={queryText} searchBlogs={searchBlogs} />{" "}
+				{/* Search box */}
 			</div>
 			<section className="container" id="blogs">
 				<div className="site-content">
