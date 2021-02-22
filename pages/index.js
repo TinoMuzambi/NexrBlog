@@ -12,7 +12,7 @@ import { getBlogs, getCategories, getFeatured } from "../utils/fetch";
 
 export default function Home({ blogs, categories, featuredItem }) {
 	const [queryText, setQueryText] = useState("");
-	const [searching, setSearching] = useState(false);
+	const [setSearching] = useState(false);
 	const blogsRef = useRef(null);
 	const router = useRouter();
 
