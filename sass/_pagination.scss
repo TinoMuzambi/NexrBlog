@@ -1,0 +1,30 @@
+.pagination,
+ul {
+	@include flexAllRow;
+	font-family: $Lexend;
+	gap: 1rem;
+
+	ul {
+		margin: 0;
+		padding: 0;
+
+		li {
+			cursor: pointer;
+			color: #3f4954;
+		}
+
+		li:not(:first-child):not(:last-child) {
+			@include flexAllRow;
+			padding: 0.7rem;
+			border-radius: 50%;
+			height: 1rem;
+			width: 1rem;
+			color: $white;
+			background: #3f4954;
+
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+	}
+}

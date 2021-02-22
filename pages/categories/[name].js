@@ -25,7 +25,10 @@ const Category = ({ category, blogs }) => {
 					<div className="posts">
 						<h1>{category.name}</h1>
 
-						<Blogs blogs={blogs} category={category.name} />
+						<Blogs
+							blogs={blogs.filter((blog) => blog.future !== true)}
+							category={category.name}
+						/>
 					</div>
 					{/* <Sidebar future={false} category={category} page="categories" /> */}
 					{/* Sidebar section populated with links to other blogs. */}

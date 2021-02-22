@@ -23,55 +23,54 @@ const Blogs = ({ blogs, category, blogsRef }) => {
 	}, [blogs]);
 
 	// TODO, fix categories.
-	const initCat = async () => {
-		if (category) {
-			setFetching(true);
+	// const initCat = async () => {
+	// 	if (category) {
+	// 		setFetching(true);
 
-			let currBlogs = [];
+	// 		let currBlogs = [];
 
-			const Storyblok = new StoryblokClient({
-				accessToken: process.env.REACT_APP_STORYBLOK_KEY,
-				cache: {
-					clear: "auto",
-					type: "memory",
-				},
-			});
-			await Storyblok.get("cdn/stories?starts_with=blogs/", {
-				sort_by: "content.date:desc",
-			})
-				.then((response) => {
-					const strictlyBlogs = response.data.stories;
-					const prettyBlogs = strictlyBlogs.map((blog) => ({
-						category: titleCase(blog.content.category.cached_url.substring(11)),
-						content: blog.content.content,
-						date: blog.content.date,
-						disqusIdentifier: blog.content.disqusIdentifier,
-						disqusShortname: blog.content.disqusShortname,
-						disqusSrc: blog.content.disqusSrc,
-						disqusURL: blog.content.disqusURL,
-						future: blog.content.future,
-						image: blog.content.media.filename,
-						alt: blog.content.media.alt,
-						readTime: blog.content.readTime,
-						title: blog.content.title,
-						url: blog.content.url,
-						id: blog.content._uid,
-					}));
-					currBlogs = prettyBlogs;
-				})
-				.catch((error) => {
-					console.error(error);
-				});
-			setDisplayBlogs(currBlogs);
-			setFetching(false);
-		}
-	};
+	// 		const Storyblok = new StoryblokClient({
+	// 			accessToken: process.env.REACT_APP_STORYBLOK_KEY,
+	// 			cache: {
+	// 				clear: "auto",
+	// 				type: "memory",
+	// 			},
+	// 		});
+	// 		await Storyblok.get("cdn/stories?starts_with=blogs/", {
+	// 			sort_by: "content.date:desc",
+	// 		})
+	// 			.then((response) => {
+	// 				const strictlyBlogs = response.data.stories;
+	// 				const prettyBlogs = strictlyBlogs.map((blog) => ({
+	// 					category: titleCase(blog.content.category.cached_url.substring(11)),
+	// 					content: blog.content.content,
+	// 					date: blog.content.date,
+	// 					disqusIdentifier: blog.content.disqusIdentifier,
+	// 					disqusShortname: blog.content.disqusShortname,
+	// 					disqusSrc: blog.content.disqusSrc,
+	// 					disqusURL: blog.content.disqusURL,
+	// 					future: blog.content.future,
+	// 					image: blog.content.media.filename,
+	// 					alt: blog.content.media.alt,
+	// 					readTime: blog.content.readTime,
+	// 					title: blog.content.title,
+	// 					url: blog.content.url,
+	// 					id: blog.content._uid,
+	// 				}));
+	// 				currBlogs = prettyBlogs;
+	// 			})
+	// 			.catch((error) => {
+	// 				console.error(error);
+	// 			});
+	// 		setDisplayBlogs(currBlogs);
+	// 		setFetching(false);
+	// 	}
+	// };
 
-	useEffect(() => {
-		initCat();
-	}, []);
+	// useEffect(() => {
+	// 	initCat();
+	// }, []);
 
-	// TODO Fix pagination.
 	const handlePageChange = (paginatedBlogs) => {
 		// Handing pagination page changes.
 		setDisplayBlogs(paginatedBlogs);
