@@ -11,7 +11,6 @@ const OpenSearch = ({ query }) => {
 	}
 
 	useEffect(() => {
-		console.log(query);
 		router.push({
 			pathname: "/",
 			query: {
@@ -25,11 +24,9 @@ const OpenSearch = ({ query }) => {
 };
 
 export const getStaticProps = async ({ params }) => {
-	console.log(params.url);
 	const query = {
-		query: params.url || "hitfilm",
+		query: params.query || "",
 	};
-	console.log(query);
 
 	return {
 		props: {
