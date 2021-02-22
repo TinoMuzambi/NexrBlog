@@ -41,7 +41,7 @@ export default function Home({ blogs, categories, featuredItem }) {
 	useEffect(() => {
 		const fromOpenSearch = router.query?.fromOpenSearch;
 		if (fromOpenSearch) {
-			setQueryText(router.query?.query);
+			setQueryText(router.query?.queryText);
 			executeScroll(blogsRef);
 		}
 	}, [router.state]);

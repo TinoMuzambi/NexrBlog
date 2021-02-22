@@ -5,12 +5,12 @@ const OpenSearch = () => {
 	const router = useRouter();
 
 	useEffect(() => {
-		const query = router.pathname.substring(8);
+		const queryText = router.pathname.substring(8);
 		router.push({
 			pathname: "/",
 			query: {
 				fromOpenSearch: true,
-				query: query,
+				queryText: queryText,
 			},
 		});
 	}, [router.pathname]);
