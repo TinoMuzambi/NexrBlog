@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import AOS from "aos";
+import { useRouter } from "next/router";
 
 import About from "../components/About";
 import Featured from "../components/Featured";
@@ -13,6 +14,7 @@ export default function Home({ blogs, categories, featuredItem }) {
 	const [queryText, setQueryText] = useState("");
 	const [searching, setSearching] = useState(false);
 	const blogsRef = useRef(null);
+	const router = useRouter();
 
 	useEffect(() => {
 		AOS.init(); // Initialise animate on scroll library.
@@ -35,6 +37,12 @@ export default function Home({ blogs, categories, featuredItem }) {
 			});
 		};
 	}, []);
+
+	useEffect(() => {
+		const fromOpenSearch = router.state?.fromOpenSearch;
+		setQueryText(router.state?.query);
+		fromOpenSearch && executeScroll(blogsRef);
+	}, [router.state]);
 
 	const searchBlogs = (query) => {
 		// Search by updating queryText state.
