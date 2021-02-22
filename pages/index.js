@@ -14,7 +14,6 @@ function Home({ blogs, categories, featuredItem, query }) {
 	const [queryText, setQueryText] = useState("");
 	const [setSearching] = useState(false);
 	const blogsRef = useRef(null);
-	const router = useRouter();
 
 	useEffect(() => {
 		AOS.init(); // Initialise animate on scroll library.
