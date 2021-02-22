@@ -27,14 +27,32 @@ const Footer = () => {
 							rel="noopener noreferrer"
 						>
 							<div className="flex-row">
-								<img src={"/assets/instagram/watch.JPG"} alt="insta1" />
-								<img src={"/assets/instagram/closed_rose.jpg"} alt="insta2" />
-								<img src={"/assets/instagram/sutherland.jpg"} alt="insta3" />
+								<img
+									src="https://a.storyblok.com/f/105639/1000x1000/d0eb9d71f7/watch.JPG"
+									alt="A close up of my watch"
+								/>
+								<img
+									src="https://a.storyblok.com/f/105639/1000x1000/8bb3fc4a9b/closed_rose.jpg"
+									alt="Closed rose"
+								/>
+								<img
+									src="https://a.storyblok.com/f/105639/1000x1000/340d25855e/sutherland.jpg"
+									alt="The Southern African Large Telescope"
+								/>
 							</div>
 							<div className="flex-row">
-								<img src={"/assets/instagram/me_sutherland.jpg"} alt="insta4" />
-								<img src={"/assets/instagram/me_selfie.jpg"} alt="insta5" />
-								<img src={"/assets/instagram/me_sprinting.JPG"} alt="insta6" />
+								<img
+									src="https://a.storyblok.com/f/105639/1000x1000/c7964641c1/me_sutherland.jpg"
+									alt="Me standing on a mountain"
+								/>
+								<img
+									src="https://a.storyblok.com/f/105639/1000x1000/f4b4ba9864/me_selfie.jpg"
+									alt="Selfie of me"
+								/>
+								<img
+									src="https://a.storyblok.com/f/105639/1000x1000/bf6bf66298/me_sprinting.JPG"
+									alt="Me sprinting"
+								/>
 							</div>
 						</a>
 					</div>

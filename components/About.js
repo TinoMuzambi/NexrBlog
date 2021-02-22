@@ -8,7 +8,10 @@ const About = () => (
 				data-aos="fade-up"
 				data-aos-delay="100"
 			>
-				<img src={"/assets/blog-images/new_me.jpg"} alt="me" />
+				<img
+					src="https://a.storyblok.com/f/105639/1338x1534/77f714ef7c/new_me.jpg"
+					alt="me"
+				/>
 				<h1>Tino Muzambi</h1>
 				<h2>
 					<s>Software Developer</s>&nbsp;Blogger
