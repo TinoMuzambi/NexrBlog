@@ -13,11 +13,12 @@ import ReactHtmlParser from "react-html-parser";
 import Pagination from "../components/Pagination";
 
 const Blogs = ({ blogs, category, blogsRef }) => {
-	const [blogItems] = useState(blogs); // Set state to list of blogs.
+	const [blogItems, setBlogItems] = useState(blogs); // Set state to list of blogs.
 	const [displayBlogs, setDisplayBlogs] = useState(blogs); // Blogs currently being displayed.
 	const [fetching, setFetching] = useState(false);
 
 	useEffect(() => {
+		setBlogItems(blogs);
 		setDisplayBlogs(blogs);
 	}, [blogs]);
 
@@ -165,7 +166,6 @@ const Blogs = ({ blogs, category, blogsRef }) => {
 										items={blogItems}
 										onChangePage={handlePageChange}
 										pageSize={4}
-										// styles={customStyles}
 										customLabels={customLabels}
 									/>
 								</div>
