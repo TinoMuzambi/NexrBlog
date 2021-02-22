@@ -41,6 +41,7 @@ function Home({ blogs, categories, featuredItem, router }) {
 	useEffect(() => {
 		const fromOpenSearch = router.query?.fromOpenSearch;
 		if (fromOpenSearch) {
+			console.log(router.query?.queryText);
 			setQueryText(router.query?.queryText);
 			executeScroll(blogsRef);
 		}
