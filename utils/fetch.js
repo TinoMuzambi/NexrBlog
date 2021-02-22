@@ -94,3 +94,27 @@ export const getFeatured = async () => {
 
 	return prettyFeat;
 };
+
+export const getCategory = async (query) => {
+	let category = {};
+	await getSpaceVersion();
+
+	await Storyblok.get(`cdn/stories/categories/${query}`, { cv: version })
+		.then((response) => {
+			const strictlyCat = response.data.story.content;
+			const prettyCats = {
+				count: strictlyCat.count,
+				alt: strictlyCat.image.alt,
+				image: strictlyCat.image.filename,
+				name: strictlyCat.name,
+				url: strictlyCat.url,
+				id: strictlyCat._uid,
+			};
+			category = prettyCats;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+
+	return category;
+};

@@ -24,7 +24,7 @@ export default function Home({ blogs, categories, featuredItem }) {
 		query ? setSearching(true) : setSearching(false);
 	};
 
-	if (!blogs) return <Preload />;
+	if (!blogs.length || !categories.length || !featuredItem) return <Preload />;
 
 	const filteredBlogs = blogs.filter((eachItem) => {
 		// Only get future blogs for sidebar.
