@@ -1,27 +1,27 @@
 {
-  "name": "next-blog",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "aos": "^2.3.4",
-    "axios": "^0.21.1",
-    "disqus-react": "^1.0.11",
-    "moment": "^2.29.1",
-    "next": "10.0.7",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "react-html-parser": "^2.0.2",
-    "react-icons": "^4.2.0",
-    "react-image": "^4.0.3",
-    "react-moment": "^1.1.1",
-    "react-player": "^2.9.0",
-    "sass": "^1.32.7",
-    "slugify": "^1.4.6",
-    "storyblok-js-client": "^3.3.1"
-  }
+	"name": "next-blog",
+	"version": "4.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start"
+	},
+	"dependencies": {
+		"aos": "^2.3.4",
+		"axios": "^0.21.1",
+		"disqus-react": "^1.0.11",
+		"moment": "^2.29.1",
+		"next": "10.0.7",
+		"react": "17.0.1",
+		"react-dom": "17.0.1",
+		"react-html-parser": "^2.0.2",
+		"react-icons": "^4.2.0",
+		"react-image": "^4.0.3",
+		"react-moment": "^1.1.1",
+		"react-player": "^2.9.0",
+		"sass": "^1.32.7",
+		"slugify": "^1.4.6",
+		"storyblok-js-client": "^3.3.1"
+	}
 }
