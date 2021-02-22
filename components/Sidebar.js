@@ -1,7 +1,10 @@
 import Categories from "../components/Categories";
 import SideBlog from "./SideBlog";
 
-const Sidebar = ({ blogs, future, categories }) => {
+const Sidebar = ({ category, blogs, future, categories }) => {
+	const filteredBlogs = blogs
+		.filter((blog) => blog.category !== category)
+		.slice(0, 3);
 	return (
 		<>
 			<aside className="sidebar">
@@ -9,7 +12,7 @@ const Sidebar = ({ blogs, future, categories }) => {
 					<Categories categories={categories} /> {/* Categories section. */}
 				</div>
 				<div className="other-posts">
-					<SideBlog blogs={blogs.reverse()} future={future} />
+					<SideBlog blogs={filteredBlogs} future={future} />
 					{/* Sidebar section. */}
 				</div>
 			</aside>

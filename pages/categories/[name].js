@@ -30,7 +30,12 @@ const Category = ({ category, blogs, categories }) => {
 							category={category.name}
 						/>
 					</div>
-					<Sidebar future={false} categories={categories} blogs={blogs} />
+					<Sidebar
+						category={category.name}
+						future={false}
+						categories={categories}
+						blogs={blogs}
+					/>
 					{/* Sidebar section populated with links to other blogs. */}
 				</div>
 			</div>
