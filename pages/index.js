@@ -16,6 +16,24 @@ export default function Home({ blogs, categories, featuredItem }) {
 
 	useEffect(() => {
 		AOS.init(); // Initialise animate on scroll library.
+
+		const preload = document.querySelector(".preload"); // Set timeout for showing preloader.
+		const timeoutID = setTimeout(function () {
+			preload.classList.add("finish");
+			clearTimeout(timeoutID);
+		}, 7000);
+
+		window.addEventListener("load", () => {
+			// Get rid of preloader once everything's loaded
+			preload.classList.add("finish");
+		});
+
+		return () => {
+			window.removeEventListener("load", () => {
+				// Get rid of preloader once everything's loaded
+				preload.classList.add("finish");
+			});
+		};
 	}, []);
 
 	const searchBlogs = (query) => {
