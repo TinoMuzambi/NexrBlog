@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import AOS from "aos";
-import { useRouter } from "next/router";
+import { withRouter } from "next/router";
 
 import About from "../components/About";
 import Featured from "../components/Featured";
@@ -10,7 +10,7 @@ import Sidebar from "../components/Sidebar";
 import Preload from "../components/Preload";
 import { getBlogs, getCategories, getFeatured } from "../utils/fetch";
 
-export default function Home({ blogs, categories, featuredItem }) {
+function Home({ blogs, categories, featuredItem, query }) {
 	const [queryText, setQueryText] = useState("");
 	const [setSearching] = useState(false);
 	const blogsRef = useRef(null);
@@ -39,12 +39,12 @@ export default function Home({ blogs, categories, featuredItem }) {
 	}, []);
 
 	useEffect(() => {
-		const fromOpenSearch = router.query?.fromOpenSearch;
+		const fromOpenSearch = query?.fromOpenSearch;
 		if (fromOpenSearch) {
-			setQueryText(router.query?.queryText);
+			setQueryText(query?.queryText);
 			executeScroll(blogsRef);
 		}
-	}, [router.state]);
+	}, [query]);
 
 	const searchBlogs = (query) => {
 		// Search by updating queryText state.
@@ -126,3 +126,5 @@ export const getStaticProps = async () => {
 		},
 	};
 };
+
+export default withRouter(Home);

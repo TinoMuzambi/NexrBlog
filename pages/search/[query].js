@@ -6,6 +6,7 @@ const OpenSearch = () => {
 
 	useEffect(() => {
 		const queryText = router.pathname.substring(8);
+		console.log(queryText);
 		router.push({
 			pathname: "/",
 			query: {
