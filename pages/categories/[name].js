@@ -1,12 +1,12 @@
-import { getBlogs, getCategory } from "../../utils/fetch";
+import { getBlogs, getCategory, getCategories } from "../../utils/fetch";
 import { useRouter } from "next/router";
 
 import Blogs from "../../components/Blogs";
 import Meta from "../../components/Meta";
-// import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 import Preload from "../../components/Preload";
 
-const Category = ({ category, blogs }) => {
+const Category = ({ category, blogs, categories }) => {
 	const router = useRouter();
 
 	if (router.isFallback) {
@@ -30,7 +30,7 @@ const Category = ({ category, blogs }) => {
 							category={category.name}
 						/>
 					</div>
-					{/* <Sidebar future={false} category={category} page="categories" /> */}
+					<Sidebar future={false} categories={categories} blogs={blogs} />
 					{/* Sidebar section populated with links to other blogs. */}
 				</div>
 			</div>
@@ -44,12 +44,14 @@ Category.defaultProps = {
 
 export const getStaticProps = async ({ params }) => {
 	const category = await getCategory(params.name);
-	const blogs = await getBlogs(params.name);
+	const blogs = await getBlogs();
+	const categories = await getCategories();
 
 	return {
 		props: {
 			blogs,
 			category,
+			categories,
 		},
 	};
 };
