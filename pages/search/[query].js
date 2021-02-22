@@ -13,7 +13,7 @@ const OpenSearch = () => {
 				query: query,
 			},
 		});
-	}, [router.pathname, setQueryText]);
+	}, [router.pathname]);
 
 	return null;
 };
