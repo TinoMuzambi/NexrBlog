@@ -16,8 +16,10 @@ const Blogs = ({ blogs, category, blogsRef }) => {
 	const [displayBlogs, setDisplayBlogs] = useState(blogs); // Blogs currently being displayed.
 
 	useEffect(() => {
-		setBlogItems(blogs);
-		setDisplayBlogs(blogs);
+		if (!category) {
+			setBlogItems(blogs);
+			setDisplayBlogs(blogs);
+		}
 	}, [blogs]);
 
 	useEffect(() => {
