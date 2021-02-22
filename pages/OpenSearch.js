@@ -13,7 +13,7 @@ const OpenSearch = ({ setQueryText, blogsRef }) => {
 				fromOpenSearch: true,
 			},
 		});
-	}, [location.pathname, history, setQueryText]);
+	}, [router.pathname, setQueryText]);
 
 	return null;
 };
