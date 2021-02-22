@@ -8,7 +8,7 @@ const OpenSearch = () => {
 		const query = router.pathname.substring(8);
 		router.push({
 			pathname: "/",
-			state: {
+			query: {
 				fromOpenSearch: true,
 				query: query,
 			},
