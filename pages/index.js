@@ -45,9 +45,9 @@ function Home({ blogs, categories, featuredItem, query }) {
 		}
 	}, [query]);
 
-	const searchBlogs = (query) => {
+	const searchBlogs = (querySearch) => {
 		// Search by updating queryText state.
-		setQueryText(query);
+		setQueryText(querySearch);
 		query ? setSearching(true) : setSearching(false);
 	};
 
