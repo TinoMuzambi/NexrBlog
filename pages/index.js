@@ -9,8 +9,9 @@ import Blogs from "../components/Blogs";
 import Sidebar from "../components/Sidebar";
 import Preload from "../components/Preload";
 import { getBlogs, getCategories, getFeatured } from "../utils/fetch";
+import { executeScroll } from "../utils/helpers";
 
-function Home({ blogs, categories, featuredItem, query }) {
+function Home({ blogs, categories, featuredItem, router }) {
 	const [queryText, setQueryText] = useState("");
 	const [setSearching] = useState(false);
 	const blogsRef = useRef(null);
@@ -38,12 +39,12 @@ function Home({ blogs, categories, featuredItem, query }) {
 	}, []);
 
 	useEffect(() => {
-		const fromOpenSearch = query?.fromOpenSearch;
+		const fromOpenSearch = router.query?.fromOpenSearch;
 		if (fromOpenSearch) {
-			setQueryText(query?.queryText);
+			setQueryText(router.query?.queryText);
 			executeScroll(blogsRef);
 		}
-	}, [query]);
+	}, [router.query]);
 
 	const searchBlogs = (querySearch) => {
 		// Search by updating queryText state.
