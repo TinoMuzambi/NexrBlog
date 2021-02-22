@@ -31,24 +31,25 @@ export const getBlogs = async () => {
 			const strictlyBlogs = response.data.stories;
 			prettyBlogs = strictlyBlogs.map((blog) => ({
 				category: titleCase(blog.content.category.cached_url.substring(11)),
-				content: blog.content.content,
-				date: blog.content.date,
-				disqusIdentifier: blog.content.disqusIdentifier,
-				disqusShortname: blog.content.disqusShortname,
-				disqusSrc: blog.content.disqusSrc,
-				disqusURL: blog.content.disqusURL,
+				content: blog.content.content || null,
+				date: blog.content.date || null,
+				disqusIdentifier: blog.content.disqusIdentifier || null,
+				disqusShortname: blog.content.disqusShortname || null,
+				disqusSrc: blog.content.disqusSrc || null,
+				disqusURL: blog.content.disqusURL || null,
 				future: blog.content.future,
 				image: blog.content.media.filename,
 				alt: blog.content.media.alt,
-				readTime: blog.content.readTime,
+				readTime: blog.content.readTime || null,
 				title: blog.content.title,
-				url: blog.content.url,
+				url: blog.content.url || null,
 				id: blog.content._uid,
 			}));
 		})
 		.catch((error) => {
 			console.error(error);
 		});
+
 	return prettyBlogs;
 };
 export const getCategories = async () => {

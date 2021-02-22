@@ -7,24 +7,12 @@ import Search from "../components/Search";
 import Blogs from "../components/Blogs";
 import Sidebar from "../components/Sidebar";
 import Preload from "../components/Preload";
+import { getBlogs, getCategories, getFeatured } from "../utils/fetch";
 
 export default function Home({ blogs, categories, featuredItem }) {
 	const [queryText, setQueryText] = useState("");
 	const [searching, setSearching] = useState(false);
-	const [fetching, setFetching] = useState(false);
-
-	useEffect(() => {
-		const getData = async () => {
-			const dataBlogs = await getBlogs();
-			const dataCategories = await getCategories();
-			const dataFeatured = await getFeatured();
-			setBlogs(dataBlogs);
-			setCategories(dataCategories);
-			setFeaturedItem(dataFeatured);
-			setFetching(false);
-		};
-		getData();
-	}, []);
+	// const [fetching, setFetching] = useState(true);
 
 	useEffect(() => {
 		AOS.init(); // Initialise animate on scroll library.
@@ -36,7 +24,7 @@ export default function Home({ blogs, categories, featuredItem }) {
 		query ? setSearching(true) : setSearching(false);
 	};
 
-	if (fetching) return <Preload />;
+	if (!blogs) return <Preload />;
 
 	const filteredBlogs = blogs.filter((eachItem) => {
 		// Only get future blogs for sidebar.
@@ -94,14 +82,13 @@ export default function Home({ blogs, categories, featuredItem }) {
 }
 
 export const getStaticProps = async () => {
+	let blogs, categories, featuredItem;
 	const getData = async () => {
-		const blogs = await getBlogs();
-		const categories = await getCategories();
-		const featuredItem = await getFeatured();
-
-		setFetching(false);
+		blogs = await getBlogs();
+		categories = await getCategories();
+		featuredItem = await getFeatured();
 	};
-	getData();
+	await getData();
 
 	return {
 		props: {
