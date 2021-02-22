@@ -10,7 +10,7 @@ import {
 import Link from "next/link";
 import Moment from "react-moment";
 import ReactHtmlParser from "react-html-parser";
-import JwPagination from "jw-react-pagination";
+import Pagination from "../components/Pagination";
 
 const Blogs = ({ blogs, category, blogsRef }) => {
 	const [blogItems] = useState(blogs); // Set state to list of blogs.
@@ -71,9 +71,9 @@ const Blogs = ({ blogs, category, blogsRef }) => {
 	}, []);
 
 	// TODO Fix pagination.
-	const handlePageChange = (displayBlogs) => {
+	const handlePageChange = (paginatedBlogs) => {
 		// Handing pagination page changes.
-		setDisplayBlogs(displayBlogs);
+		setDisplayBlogs(paginatedBlogs);
 	};
 
 	const customLabels = {
@@ -161,12 +161,12 @@ const Blogs = ({ blogs, category, blogsRef }) => {
 									}
 								>
 									{/* Pagination element */}
-									<JwPagination
+									<Pagination
 										items={blogItems}
 										onChangePage={handlePageChange}
 										pageSize={4}
 										// styles={customStyles}
-										labels={customLabels}
+										customLabels={customLabels}
 									/>
 								</div>
 							</>

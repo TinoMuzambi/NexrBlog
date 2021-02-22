@@ -5,3 +5,6 @@ export const titleCase = (str) => {
 	}
 	return str.join(" ");
 };
+
+export const executeScroll = (customRef) =>
+	customRef?.current.scrollIntoView({ behavior: "smooth" });
