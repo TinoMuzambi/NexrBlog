@@ -4,7 +4,6 @@ import { FaUser, FaCalendar } from "react-icons/fa";
 import Moment from "react-moment";
 import ReactHtmlParser from "react-html-parser";
 
-import { titleCase } from "../../utils/helpers";
 import Preload from "../../components/Preload";
 import Disqus from "../../components/Disqus";
 import Meta from "../../components/Meta";
@@ -71,43 +70,6 @@ const Blog = ({ blog }) => {
 			</div>
 		</>
 	);
-};
-
-const Storyblok = new StoryblokClient({
-	accessToken: process.env.REACT_APP_STORYBLOK_KEY,
-	cache: {
-		clear: "auto",
-		type: "memory",
-	},
-});
-const getBlog = async (query) => {
-	let blog = {};
-	await Storyblok.get(`cdn/stories/blogs/${query}`, {})
-		.then((response) => {
-			const strictlyBlog = response.data.story.content;
-			const prettyBlogs = {
-				category: titleCase(strictlyBlog.category.cached_url.substring(11)),
-				content: strictlyBlog.content,
-				date: strictlyBlog.date,
-				disqusIdentifier: strictlyBlog.disqusIdentifier,
-				disqusShortname: strictlyBlog.disqusShortname,
-				disqusSrc: strictlyBlog.disqusSrc,
-				disqusURL: strictlyBlog.disqusURL,
-				future: strictlyBlog.future,
-				image: strictlyBlog.media.filename,
-				alt: strictlyBlog.media.alt,
-				readTime: strictlyBlog.readTime,
-				title: strictlyBlog.title,
-				url: strictlyBlog.url,
-				id: strictlyBlog._uid,
-			};
-			blog = prettyBlogs;
-		})
-		.catch((error) => {
-			console.error(error);
-		});
-
-	return blog;
 };
 
 export const getStaticProps = async ({ params }) => {
