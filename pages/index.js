@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import StoryblokClient from "storyblok-js-client";
 import AOS from "aos";
 
 import About from "../components/About";
@@ -7,12 +6,25 @@ import Featured from "../components/Featured";
 import Search from "../components/Search";
 import Blogs from "../components/Blogs";
 import Sidebar from "../components/Sidebar";
-
-import { titleCase } from "../utils/helpers";
+import Preload from "../components/Preload";
 
 export default function Home({ blogs, categories, featuredItem }) {
 	const [queryText, setQueryText] = useState("");
 	const [searching, setSearching] = useState(false);
+	const [fetching, setFetching] = useState(false);
+
+	useEffect(() => {
+		const getData = async () => {
+			const dataBlogs = await getBlogs();
+			const dataCategories = await getCategories();
+			const dataFeatured = await getFeatured();
+			setBlogs(dataBlogs);
+			setCategories(dataCategories);
+			setFeaturedItem(dataFeatured);
+			setFetching(false);
+		};
+		getData();
+	}, []);
 
 	useEffect(() => {
 		AOS.init(); // Initialise animate on scroll library.
@@ -23,6 +35,8 @@ export default function Home({ blogs, categories, featuredItem }) {
 		setQueryText(query);
 		query ? setSearching(true) : setSearching(false);
 	};
+
+	if (fetching) return <Preload />;
 
 	const filteredBlogs = blogs.filter((eachItem) => {
 		// Only get future blogs for sidebar.
@@ -79,106 +93,15 @@ export default function Home({ blogs, categories, featuredItem }) {
 	);
 }
 
-const getBlogs = async () => {
-	let blogs = [];
-
-	const Storyblok = new StoryblokClient({
-		accessToken: process.env.REACT_APP_STORYBLOK_KEY,
-		cache: {
-			clear: "auto",
-			type: "memory",
-		},
-	});
-	await Storyblok.get("cdn/stories?starts_with=blogs/", {
-		sort_by: "content.date:desc",
-	})
-		.then((response) => {
-			const strictlyBlogs = response.data.stories;
-			const prettyBlogs = strictlyBlogs.map((blog) => ({
-				category: titleCase(blog.content.category.cached_url.substring(11)),
-				content: blog.content.content,
-				date: blog.content.date,
-				disqusIdentifier: blog.content.disqusIdentifier,
-				disqusShortname: blog.content.disqusShortname,
-				disqusSrc: blog.content.disqusSrc,
-				disqusURL: blog.content.disqusURL,
-				future: blog.content.future,
-				image: blog.content.media.filename,
-				alt: blog.content.media.alt,
-				readTime: blog.content.readTime,
-				title: blog.content.title,
-				url: blog.content.url,
-				id: blog.content._uid,
-			}));
-			blogs = prettyBlogs;
-		})
-		.catch((error) => {
-			console.error(error);
-		});
-	return blogs;
-};
-const getCategories = async () => {
-	let categories = [];
-
-	const Storyblok = new StoryblokClient({
-		accessToken: process.env.REACT_APP_STORYBLOK_KEY,
-		cache: {
-			clear: "auto",
-			type: "memory",
-		},
-	});
-	await Storyblok.get("cdn/stories?starts_with=categories/", {})
-		.then((response) => {
-			const strictlyCats = response.data.stories;
-			const prettyCats = strictlyCats.map((cat) => ({
-				count: cat.content.count,
-				alt: cat.content.image.alt,
-				image: cat.content.image.filename,
-				name: cat.content.name,
-				url: cat.content.url,
-				id: cat.content._uid,
-			}));
-			categories = prettyCats;
-		})
-		.catch((error) => {
-			console.error(error);
-		});
-
-	return categories;
-};
-
-const getFeatured = async () => {
-	let featured = {};
-
-	const Storyblok = new StoryblokClient({
-		accessToken: process.env.REACT_APP_STORYBLOK_KEY,
-		cache: {
-			clear: "auto",
-			type: "memory",
-		},
-	});
-	await Storyblok.get("cdn/stories/featured-item/", {})
-		.then((response) => {
-			const strictlyFeat = response.data.story.content;
-			const prettyFeat = {
-				date: strictlyFeat.date,
-				description: strictlyFeat.description,
-				title: strictlyFeat.title,
-				url: strictlyFeat.url,
-			};
-			featured = prettyFeat;
-		})
-		.catch((error) => {
-			console.error(error);
-		});
-
-	return featured;
-};
-
 export const getStaticProps = async () => {
-	const blogs = await getBlogs();
-	const categories = await getCategories();
-	const featuredItem = await getFeatured();
+	const getData = async () => {
+		const blogs = await getBlogs();
+		const categories = await getCategories();
+		const featuredItem = await getFeatured();
+
+		setFetching(false);
+	};
+	getData();
 
 	return {
 		props: {
