@@ -40,8 +40,10 @@ export default function Home({ blogs, categories, featuredItem }) {
 
 	useEffect(() => {
 		const fromOpenSearch = router.state?.fromOpenSearch;
-		setQueryText(router.state?.query);
-		fromOpenSearch && executeScroll(blogsRef);
+		if (fromOpenSearch) {
+			setQueryText(router.state?.query);
+			executeScroll(blogsRef);
+		}
 	}, [router.state]);
 
 	const searchBlogs = (query) => {
