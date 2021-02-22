@@ -101,18 +101,14 @@ const Blogs = ({ blogs, category, blogsRef }) => {
 									{/* Conditionally render element */}
 								</div>
 							))}
-							<div
-								className="page-holder text-center"
-								onClick={() =>
-									blogsRef?.current.scrollIntoView({ behavior: "smooth" })
-								}
-							>
+							<div className="page-holder text-center">
 								{/* Pagination element */}
 								<Pagination
 									items={blogItems}
 									onChangePage={handlePageChange}
 									pageSize={4}
 									customLabels={customLabels}
+									customRef={blogsRef}
 								/>
 							</div>
 						</>

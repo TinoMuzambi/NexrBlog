@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import AOS from "aos";
 
 import About from "../components/About";
@@ -12,7 +12,7 @@ import { getBlogs, getCategories, getFeatured } from "../utils/fetch";
 export default function Home({ blogs, categories, featuredItem }) {
 	const [queryText, setQueryText] = useState("");
 	const [searching, setSearching] = useState(false);
-	// const [fetching, setFetching] = useState(true);
+	const blogsRef = useRef(null);
 
 	useEffect(() => {
 		AOS.init(); // Initialise animate on scroll library.
@@ -64,8 +64,8 @@ export default function Home({ blogs, categories, featuredItem }) {
 			</div>
 			<section className="container" id="blogs">
 				<div className="site-content">
-					<section className="blogs">
-						<Blogs blogs={homeBlogs} category={false} />
+					<section className="blogs" ref={blogsRef}>
+						<Blogs blogs={homeBlogs} category={false} blogsRef={blogsRef} />
 					</section>
 
 					<Sidebar
