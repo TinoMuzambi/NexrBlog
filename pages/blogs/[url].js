@@ -41,9 +41,9 @@ const Blog = ({ blog, categories, blogs }) => {
 		<>
 			<Meta
 				title={`${blog.title} | Blog.TinoMuzambi`}
-				description={ReactHtmlParser(
-					blog.content.slice(0, blog.content.indexOf("<br>")) + "</p>"
-				)}
+				description={blog.content
+					.slice(blog.content.indexOf(">") + 1, blog.content.indexOf("<br>"))
+					.trim()}
 				image={blog.image}
 				url={`https://blog.tinomuzambi.com/${blog.url}`}
 			/>
