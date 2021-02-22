@@ -13,7 +13,6 @@ import { executeScroll } from "../utils/helpers";
 
 function Home({ blogs, categories, featuredItem, router }) {
 	const [queryText, setQueryText] = useState("");
-	const [setSearching] = useState(false);
 	const blogsRef = useRef(null);
 
 	useEffect(() => {
@@ -49,7 +48,6 @@ function Home({ blogs, categories, featuredItem, router }) {
 	const searchBlogs = (querySearch) => {
 		// Search by updating queryText state.
 		setQueryText(querySearch);
-		query ? setSearching(true) : setSearching(false);
 	};
 
 	if (!blogs.length || !categories.length || !featuredItem) return <Preload />;
