@@ -59,7 +59,7 @@ Meta.defaultProps = {
 	title: "Blog.TinoMuzambi",
 	keywords: "blog, tech, lifestyle, tino, muzambi, music",
 	description: "Welcome to my blog.",
-	image: "/assets/logo512.png",
+	image: "https://a.storyblok.com/f/105639/512x512/03489159d5/logo512.png",
 	url: "https://blog.tinomuzambi.com",
 };
 
