@@ -43,7 +43,7 @@ const OpenSearch = ({ query }) => {
 	return null;
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
 	const query = {
 		query: params.query || "",
 	};
@@ -55,11 +55,11 @@ export const getStaticProps = async ({ params }) => {
 	};
 };
 
-export const getStaticPaths = () => {
-	return {
-		paths: [],
-		fallback: true,
-	};
-};
+// export const getStaticPaths = () => {
+// 	return {
+// 		paths: [],
+// 		fallback: true,
+// 	};
+// };
 
 export default OpenSearch;

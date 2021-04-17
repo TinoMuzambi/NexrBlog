@@ -105,7 +105,7 @@ const Blog = ({ blog, categories, blogs }) => {
 	);
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
 	const query = params.url.split("_").join("-");
 	const blog = await getBlog(query);
 	const blogs = await getBlogs();
@@ -120,11 +120,11 @@ export const getStaticProps = async ({ params }) => {
 	};
 };
 
-export const getStaticPaths = () => {
-	return {
-		paths: [],
-		fallback: true,
-	};
-};
+// export const getStaticPaths = () => {
+// 	return {
+// 		paths: [],
+// 		fallback: true,
+// 	};
+// };
 
 export default Blog;

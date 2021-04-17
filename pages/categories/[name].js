@@ -68,7 +68,7 @@ Category.defaultProps = {
 	category: {},
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
 	const category = await getCategory(params.name);
 	const blogs = await getBlogs();
 	const categories = await getCategories();
@@ -82,11 +82,11 @@ export const getStaticProps = async ({ params }) => {
 	};
 };
 
-export const getStaticPaths = () => {
-	return {
-		paths: [],
-		fallback: true,
-	};
-};
+// export const getStaticPaths = () => {
+// 	return {
+// 		paths: [],
+// 		fallback: true,
+// 	};
+// };
 
 export default Category;
