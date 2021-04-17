@@ -108,7 +108,7 @@ function Home({ blogs, categories, featuredItem, router }) {
 	);
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
 	let blogs, categories, featuredItem;
 	const getData = async () => {
 		blogs = await getBlogs();
